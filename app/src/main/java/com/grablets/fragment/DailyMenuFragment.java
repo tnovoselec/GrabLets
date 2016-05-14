@@ -10,9 +10,13 @@ import android.view.ViewGroup;
 
 import com.grablets.R;
 import com.grablets.adapter.DailyMenuAdapter;
+import com.grablets.di.ActivityComponent;
+import com.grablets.di.ComponentProvider;
 import com.grablets.mvp.DailyMenuMvp;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.viewmodel.DailyMenuViewModel;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -23,6 +27,7 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
 
   DailyMenuAdapter dailyMenuAdapter;
 
+  @Inject
   DailyMenuPresenter dailyMenuPresenter;
 
   public static DailyMenuFragment create(){
@@ -32,7 +37,11 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    dailyMenuPresenter = new DailyMenuPresenter();
+  }
+
+  @Override
+  protected void inject(ComponentProvider<ActivityComponent> activityComponentComponentProvider) {
+    activityComponentComponentProvider.getComponent().inject(this);
   }
 
   @Override
