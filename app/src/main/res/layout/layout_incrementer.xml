@@ -7,18 +7,18 @@
     android:layout_height="wrap_content"
     android:background="?android:selectableItemBackground"
     android:text="+"
-    android:textSize="20sp"
-    android:padding="8dp"
+    style="@style/TextAppearance.AppCompat.Title"
+    android:padding="@dimen/padding_medium"
   />
 
   <TextView
     android:id="@+id/amount"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+    android:layout_marginLeft="@dimen/padding_medium"
+    android:layout_marginRight="@dimen/padding_medium"
     android:text="0"
-    android:textSize="20sp"/>
+    style="@style/TextAppearance.AppCompat.Title"/>
 
   <TextView
     android:id="@+id/decrement_amount"
@@ -26,7 +26,7 @@
     android:layout_height="wrap_content"
     android:background="?android:selectableItemBackground"
     android:text="-"
-    android:padding="8dp"
-    android:textSize="20sp"/>
+    android:padding="@dimen/padding_medium"
+    style="@style/TextAppearance.AppCompat.Title"/>
 
 </merge>
