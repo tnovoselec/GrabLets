@@ -22,6 +22,8 @@ import butterknife.BindView;
 
 public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View {
 
+  public static final String TAG = DailyMenuFragment.class.getSimpleName();
+
   @BindView(R.id.daily_menu_recycler_view)
   RecyclerView dailyMenuRecyclerView;
 
@@ -30,7 +32,7 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
   @Inject
   DailyMenuPresenter dailyMenuPresenter;
 
-  public static DailyMenuFragment create(){
+  public static DailyMenuFragment create() {
     return new DailyMenuFragment();
   }
 

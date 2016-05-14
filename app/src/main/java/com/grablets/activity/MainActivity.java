@@ -12,6 +12,7 @@ import com.grablets.R;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.fragment.DailyMenuFragment;
+import com.grablets.fragment.RestaurantsFragment;
 import com.grablets.internal.GrabLetsMenuItem;
 
 import javax.inject.Inject;
@@ -33,6 +34,7 @@ public class MainActivity extends BaseActivity
   PreferenceAccessor preferenceAccessor;
 
   private DailyMenuFragment dailyMenuFragment;
+  private RestaurantsFragment restaurantsFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +52,7 @@ public class MainActivity extends BaseActivity
     navigationView.setNavigationItemSelectedListener(this);
 
     if (savedInstanceState == null) {
-      dailyMenuFragment = DailyMenuFragment.create();
-      getSupportFragmentManager().beginTransaction().replace(R.id.main_container, dailyMenuFragment).commit();
+      showDailyMenu();
     }
   }
 
@@ -75,9 +76,9 @@ public class MainActivity extends BaseActivity
     int id = item.getItemId();
 
     if (id == R.id.nav_daily_menu) {
-      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.DAILY_MENU.itemId);
+      showDailyMenu();
     } else if (id == R.id.nav_restaurants) {
-      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.RESTAURANT_LIST.itemId);
+      showRestaurants();
     } else if (id == R.id.nav_my_orders) {
       preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_ORDERS.itemId);
     } else if (id == R.id.nav_my_restaurants) {
@@ -90,5 +91,23 @@ public class MainActivity extends BaseActivity
 
     drawer.closeDrawer(GravityCompat.START);
     return true;
+  }
+
+  private void showDailyMenu() {
+    preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.DAILY_MENU.itemId);
+    toolbar.setTitle(R.string.daily_menu);
+    if (dailyMenuFragment == null) {
+      dailyMenuFragment = DailyMenuFragment.create();
+    }
+    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, dailyMenuFragment, DailyMenuFragment.TAG).commit();
+  }
+
+  private void showRestaurants() {
+    toolbar.setTitle(R.string.restaurant_list);
+    preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.RESTAURANT_LIST.itemId);
+    if (restaurantsFragment == null) {
+      restaurantsFragment = RestaurantsFragment.create();
+    }
+    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, restaurantsFragment, RestaurantsFragment.TAG).commit();
   }
 }

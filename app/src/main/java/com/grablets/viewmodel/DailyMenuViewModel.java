@@ -11,11 +11,11 @@ public class DailyMenuViewModel {
   }
 
   public static class MenuItemViewModel{
-    public final String imageUrl;
     public final String title;
+    public final String imageUrl;
     public final String description;
 
-    public MenuItemViewModel(String description, String imageUrl, String title) {
+    public MenuItemViewModel(String title, String description, String imageUrl) {
       this.description = description;
       this.imageUrl = imageUrl;
       this.title = title;
