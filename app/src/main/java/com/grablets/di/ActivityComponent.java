@@ -1,8 +1,12 @@
 package com.grablets.di;
 
 
+import android.content.Context;
+
+import com.grablets.Router;
 import com.grablets.activity.BaseActivity;
 import com.grablets.di.module.ActivityModule;
+import com.grablets.di.qualifier.ForActivity;
 import com.grablets.di.scope.ActivityScope;
 
 import dagger.Component;
@@ -28,9 +32,14 @@ public interface ActivityComponent extends ApplicationComponent, ActivityCompone
           .build();
     }
 
+
+
     // No instances
     private Initializer() {
     }
   }
+  @ForActivity
+  Context provideActivityContext();
 
+  Router router();
 }

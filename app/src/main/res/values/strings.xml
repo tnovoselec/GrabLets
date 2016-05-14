@@ -11,4 +11,15 @@
   <string name="settings">Postavke</string>
   <string name="daily_menu">Ponuda dana</string>
   <string name="restaurant_list">Restorani</string>
+  <string name="email_hint">Email adresa</string>
+  <string name="password">Lozinka</string>
+  <string name="login">Login</string>
+  <string name="register_message">Nemate račun? <u>Registrirajte se.</u></string>
+  <string name="registration">Registracija</string>
+  <string name="user_first_name">Ime</string>
+  <string name="user_last_name">Prezime</string>
+  <string name="user_phone">Telefon</string>
+  <string name="user_address">Adresa</string>
+  <string name="user_additional_info">Napomena</string>
+  <string name="register">Registriraj se!</string>
 </resources>

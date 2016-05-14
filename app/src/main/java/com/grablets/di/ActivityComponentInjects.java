@@ -1,7 +1,11 @@
 package com.grablets.di;
 
+import com.grablets.activity.LoginActivity;
 import com.grablets.activity.MainActivity;
+import com.grablets.activity.RegistrationActivity;
 import com.grablets.fragment.DailyMenuFragment;
+import com.grablets.fragment.LoginFragment;
+import com.grablets.fragment.RegistrationFragment;
 import com.grablets.fragment.RestaurantsFragment;
 
 public interface ActivityComponentInjects {
@@ -11,4 +15,12 @@ public interface ActivityComponentInjects {
   void inject(DailyMenuFragment dailyMenuFragment);
 
   void inject(RestaurantsFragment restaurantsFragment);
+
+  void inject(LoginActivity loginActivity);
+
+  void inject(LoginFragment loginFragment);
+
+  void inject(RegistrationActivity registrationActivity);
+
+  void inject(RegistrationFragment registrationFragment);
 }

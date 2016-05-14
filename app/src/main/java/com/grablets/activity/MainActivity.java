@@ -1,5 +1,7 @@
 package com.grablets.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -35,6 +37,10 @@ public class MainActivity extends BaseActivity
 
   private DailyMenuFragment dailyMenuFragment;
   private RestaurantsFragment restaurantsFragment;
+
+  public static Intent createIntent(Context context){
+    return new Intent(context, MainActivity.class);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
