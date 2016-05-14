@@ -5,4 +5,10 @@
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
   <string name="action_settings">Settings</string>
+  <string name="my_orders">Moje narudžbe</string>
+  <string name="my_restaurants">Moji restorani</string>
+  <string name="news">Obavijesti</string>
+  <string name="settings">Postavke</string>
+  <string name="daily_menu">Ponuda dana</string>
+  <string name="restaurant_list">Restorani</string>
 </resources>
