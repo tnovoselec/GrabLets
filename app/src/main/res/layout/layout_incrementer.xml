@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="horizontal"
-  android:padding="10dp">
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
   <TextView
     android:id="@+id/increment_amount"
     android:layout_width="wrap_content"
@@ -12,6 +8,7 @@
     android:background="?android:selectableItemBackground"
     android:text="+"
     android:textSize="20sp"
+    android:padding="8dp"
   />
 
   <TextView
@@ -29,6 +26,7 @@
     android:layout_height="wrap_content"
     android:background="?android:selectableItemBackground"
     android:text="-"
+    android:padding="8dp"
     android:textSize="20sp"/>
 
-</LinearLayout>
+</merge>

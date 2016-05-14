@@ -4,6 +4,7 @@ package com.grablets.di;
 import android.app.Application;
 
 import com.grablets.GrabLetsApplication;
+import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.module.ApplicationModule;
 
 import javax.inject.Singleton;
@@ -34,6 +35,8 @@ public interface ApplicationComponent {
   }
 
   Application getApplication();
+
+  PreferenceAccessor getPreferenceAccessor();
 
   void inject(GrabLetsApplication commerceApplication);
 

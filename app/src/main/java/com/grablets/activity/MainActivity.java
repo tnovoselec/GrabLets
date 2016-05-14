@@ -12,6 +12,7 @@ import com.grablets.R;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.fragment.DailyMenuFragment;
+import com.grablets.internal.GrabLetsMenuItem;
 
 import javax.inject.Inject;
 
@@ -73,19 +74,19 @@ public class MainActivity extends BaseActivity
     // Handle navigation view item clicks here.
     int id = item.getItemId();
 
-//    if (id == R.id.nav_camera) {
-//      // Handle the camera action
-//    } else if (id == R.id.nav_gallery) {
-//
-//    } else if (id == R.id.nav_slideshow) {
-//
-//    } else if (id == R.id.nav_manage) {
-//
-//    } else if (id == R.id.nav_share) {
-//
-//    } else if (id == R.id.nav_send) {
-//
-//    }
+    if (id == R.id.nav_daily_menu) {
+      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.DAILY_MENU.itemId);
+    } else if (id == R.id.nav_restaurants) {
+      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.RESTAURANT_LIST.itemId);
+    } else if (id == R.id.nav_my_orders) {
+      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_ORDERS.itemId);
+    } else if (id == R.id.nav_my_restaurants) {
+      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_RESTAURANTS.itemId);
+    } else if (id == R.id.nav_news) {
+      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.NEWS.itemId);
+    } else if (id == R.id.nav_settings) {
+      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.SETTINGS.itemId);
+    }
 
     drawer.closeDrawer(GravityCompat.START);
     return true;
