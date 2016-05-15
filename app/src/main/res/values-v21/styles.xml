@@ -8,27 +8,27 @@
   </style>
 
   <style name="TimePickerDialogTheme" parent="@style/Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent">#ff2d6073</item> <!-- colorAccent here seems to work just fine? -->
+    <item name="colorAccent">@color/colorPrimary</item>
     <item name="android:timePickerStyle">@style/TimePickerDialogStyle</item>
   </style>
 
   <style name="TimePickerDialogStyle" parent="@android:style/Widget.Material.Light.TimePicker">
 
-    <item name="colorAccent">#ff2d6073</item> <!-- colorAccent here seems to work just fine? -->
+    <item name="colorAccent">@color/colorPrimary</item>
 
     <item name="android:timePickerMode">clock</item>
-    <item name="android:headerBackground">#ff2d6073</item>
+    <item name="android:headerBackground">@color/colorPrimary</item>
     <item name="android:headerTimeTextAppearance">@style/TextAppearance.TimePickerDialogStyle.TimeLabel</item> <!-- TimePicker Time *TextAppearance* -->
-    <item name="android:numbersTextColor">#ff000000</item>
-    <item name="android:numbersSelectorColor">#ff2d6073</item>
-    <item name="android:numbersBackgroundColor">#ffdddddd</item>
+    <item name="android:numbersTextColor">@android:color/black</item>
+    <item name="android:numbersSelectorColor">@color/colorPrimary</item>
+    <item name="android:numbersBackgroundColor">@android:color/white</item>
 
   </style>
 
   <style name="TextAppearance.TimePickerDialogStyle.TimeLabel" parent="@android:style/TextAppearance.Material">
 
     <item name="android:textSize">60sp</item> <!-- from -->
-    <item name="android:textColor">#ffD0D102</item>
+    <item name="android:textColor">@android:color/white</item>
 
   </style>
 </resources>

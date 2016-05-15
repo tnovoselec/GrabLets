@@ -5,8 +5,7 @@ public enum GrabLetsMenuItem {
   RESTAURANT_LIST(1),
   MY_ORDERS(2),
   MY_RESTAURANTS(3),
-  NEWS(4),
-  SETTINGS(5);
+  SETTINGS(4);
 
   public final int itemId;
 

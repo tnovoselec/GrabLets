@@ -1,11 +1,8 @@
 package com.grablets.fragment;
 
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,8 +15,6 @@ import com.grablets.di.ActivityComponent;
 import com.grablets.di.ComponentProvider;
 import com.grablets.mvp.RegistrationMvp;
 import com.grablets.mvp.presenter.RegistrationPresenter;
-
-import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -90,9 +85,9 @@ public class RegistrationFragment extends BaseFragment implements RegistrationMv
   @OnTouch(R.id.user_delivery_time_label)
   public boolean onDeliveryTimeClicked(MotionEvent event) {
     if (event.getAction() == MotionEvent.ACTION_UP) {
-      TimePickerFragment timePickerFragment = new TimePickerFragment();
+      TimePickerFragment timePickerFragment = TimePickerFragment.create();
       timePickerFragment.setListener(this);
-      timePickerFragment.show(getChildFragmentManager(), "timePicker");
+      timePickerFragment.show(getChildFragmentManager(), TimePickerFragment.TAG);
       return true;
     }
     return false;
@@ -108,25 +103,5 @@ public class RegistrationFragment extends BaseFragment implements RegistrationMv
     userDeliveryTimeLabel.setText(String.format("%02d:%02d", hourOfDay, minute));
   }
 
-  public static class TimePickerFragment extends DialogFragment {
 
-    private TimePickerDialog.OnTimeSetListener listener;
-
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-      // Use the current time as the default values for the picker
-      final Calendar c = Calendar.getInstance();
-      int hour = c.get(Calendar.HOUR_OF_DAY);
-      int minute = c.get(Calendar.MINUTE);
-
-      // Create a new instance of TimePickerDialog and return it
-      return new TimePickerDialog(getActivity(), listener, hour, minute,
-          DateFormat.is24HourFormat(getActivity()));
-    }
-
-    public void setListener(TimePickerDialog.OnTimeSetListener listener) {
-      this.listener = listener;
-    }
-  }
 }

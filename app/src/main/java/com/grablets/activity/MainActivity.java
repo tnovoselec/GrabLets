@@ -89,8 +89,6 @@ public class MainActivity extends BaseActivity
       preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_ORDERS.itemId);
     } else if (id == R.id.nav_my_restaurants) {
       preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_RESTAURANTS.itemId);
-    } else if (id == R.id.nav_news) {
-      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.NEWS.itemId);
     } else if (id == R.id.nav_settings) {
       preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.SETTINGS.itemId);
     }
