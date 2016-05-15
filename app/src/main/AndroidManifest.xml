@@ -2,6 +2,9 @@
 <manifest package="com.grablets"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
   <application
     android:name=".GrabLetsApplication"
     android:allowBackup="true"
@@ -9,8 +12,9 @@
     android:label="@string/app_name"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activity.LoginActivity"
-              android:theme="@style/AppTheme.NoActionBar">
+    <activity
+      android:name=".activity.LoginActivity"
+      android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -32,6 +36,15 @@
       android:theme="@style/AppTheme.NoActionBar"
       android:windowSoftInputMode="stateHidden">
     </activity>
+
+    <receiver android:name=".receiver.BootBroadcastReceiver"
+              android:enabled="false">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+      </intent-filter>
+    </receiver>
+    <receiver android:name=".receiver.AlarmReceiver"/>
+    <service android:name=".service.DailyMenuService"/>
   </application>
 
 </manifest>

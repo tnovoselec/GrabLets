@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.qualifier.ForApplication;
 
@@ -45,5 +46,11 @@ public class ApplicationModule {
   @Singleton
   protected PreferenceAccessor preferenceAccessor(SharedPreferences sharedPreferences) {
     return new PreferenceAccessor(sharedPreferences);
+  }
+
+  @Provides
+  @Singleton
+  protected NotificationScheduler notificationScheduler(@ForApplication Context context, PreferenceAccessor preferenceAccessor) {
+    return new NotificationScheduler(context, preferenceAccessor);
   }
 }

@@ -8,6 +8,7 @@ public class PreferenceAccessor {
 
   private static final String ACTIVE_MENU_ITEM = "active_menu_item";
   private static final String NOTIFICATIONS_ENABLED = "notifications_enabled";
+  private static final String NOTIFICATIONS_TIME = "notifications_time";
 
   private final SharedPreferences sharedPreferences;
 
@@ -32,6 +33,14 @@ public class PreferenceAccessor {
     return getBoolean(NOTIFICATIONS_ENABLED);
   }
 
+  public void setNotificationsTime(long notificationsTime){
+    set(NOTIFICATIONS_TIME, notificationsTime);
+  }
+
+  public long getNotificationsTime(){
+    return getLong(NOTIFICATIONS_TIME);
+  }
+
   // Helper methods
 
   private boolean getBoolean(String key) {
@@ -40,6 +49,10 @@ public class PreferenceAccessor {
 
   private int getInt(String key) {
     return sharedPreferences.getInt(key, 0);
+  }
+
+  private long getLong(String key) {
+    return sharedPreferences.getLong(key, 0);
   }
 
   private String getString(String key) {
@@ -52,6 +65,10 @@ public class PreferenceAccessor {
 
   private void set(String key, int value) {
     edit().putInt(key, value).apply();
+  }
+
+  private void set(String key, long value) {
+    edit().putLong(key, value).apply();
   }
 
   private void set(String key, String value) {

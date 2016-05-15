@@ -13,9 +13,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.grablets.R;
+import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.di.ComponentProvider;
+
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -46,6 +49,9 @@ public class SettingsFragment extends BaseFragment {
 
   @Inject
   PreferenceAccessor preferenceAccessor;
+
+  @Inject
+  NotificationScheduler notificationScheduler;
 
   public static SettingsFragment create() {
     return new SettingsFragment();
@@ -91,6 +97,14 @@ public class SettingsFragment extends BaseFragment {
     timePickerFragment.show(getChildFragmentManager(), TimePickerFragment.TAG);
   }
 
+  private void scheduleNotifications(int hourOfDay, int minute) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+    calendar.set(Calendar.MINUTE, minute);
+    preferenceAccessor.setNotificationsTime(calendar.getTimeInMillis());
+    notificationScheduler.scheduleNotificationAlarm();
+  }
+
 
   class DeliveryTimeListener implements TimePickerDialog.OnTimeSetListener {
     @Override
@@ -103,6 +117,9 @@ public class SettingsFragment extends BaseFragment {
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
       settingsDailyMenuNotificationTime.setText(String.format("%02d:%02d", hourOfDay, minute));
+
+      scheduleNotifications(hourOfDay, minute);
+
     }
   }
 
