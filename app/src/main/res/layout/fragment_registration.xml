@@ -64,6 +64,17 @@
       style="@style/RegistrationTextAppearance"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:text="@string/user_delivery_time"/>
+    <EditText
+      android:id="@+id/user_delivery_time_label"
+      style="@style/RegistrationTextAppearance"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
+    <TextView
+      style="@style/RegistrationTextAppearance"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:text="@string/user_additional_info"/>
     <EditText
       android:id="@+id/user_additional_info_label"

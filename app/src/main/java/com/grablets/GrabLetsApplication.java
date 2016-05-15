@@ -1,6 +1,7 @@
 package com.grablets;
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
 
 import com.grablets.di.ApplicationComponent;
 import com.grablets.di.ComponentFactory;
@@ -13,7 +14,7 @@ public class GrabLetsApplication extends Application implements ComponentProvide
   @Override
   public void onCreate() {
     super.onCreate();
-
+    MultiDex.install(this);
     inject();
   }
 
