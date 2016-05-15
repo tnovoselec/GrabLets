@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/login_background"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default">
+
+    <TextView
+      style="@style/SettingsTextAppearance"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/padding_default"
+      android:text="@string/notifications"/>
+    <View style="@style/DividerHorizontal"/>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:paddingLeft="@dimen/padding_default"
+      android:paddingTop="@dimen/padding_default">
+      <TextView
+        style="@style/SettingsTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/daily_menu_notification_message"/>
+      <CheckBox
+        android:id="@+id/settings_daily_menu_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"/>
+    </LinearLayout>
+    <TextView
+      android:id="@+id/settings_daily_menu_notification_time"
+      style="@style/SettingsTextAppearance"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingLeft="@dimen/padding_default"
+      android:text="@string/delivery_time_default_value"/>
+
+    <TextView
+      style="@style/SettingsTextAppearance"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/padding_default"
+      android:layout_marginTop="@dimen/padding_default"
+      android:text="@string/my_profile"/>
+    <View style="@style/DividerHorizontal"/>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/login_background"
+      android:orientation="vertical"
+      android:paddingLeft="@dimen/padding_default"
+      android:paddingTop="@dimen/padding_default">
+
+      <TextView
+        style="@style/RegistrationTextAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_first_name"/>
+      <TextView
+        android:id="@+id/settings_first_name_label"
+        style="@style/RegistrationTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:text="Marko"/>
+
+      <TextView
+        style="@style/RegistrationTextAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:text="@string/user_last_name"/>
+      <TextView
+        android:id="@+id/settings_last_name_label"
+        style="@style/RegistrationTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:text="Marković"/>
+
+      <TextView
+        style="@style/RegistrationTextAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:text="@string/user_phone"/>
+      <EditText
+        android:id="@+id/settings_phone_label"
+        style="@style/RegistrationTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:singleLine="true"/>
+
+      <TextView
+        style="@style/RegistrationTextAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_address"/>
+      <EditText
+        android:id="@+id/settings_address_label"
+        style="@style/RegistrationTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+      <TextView
+        style="@style/RegistrationTextAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_delivery_time"/>
+      <EditText
+        android:id="@+id/settings_delivery_time_label"
+        style="@style/RegistrationTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+      <TextView
+        style="@style/RegistrationTextAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_additional_info"/>
+      <EditText
+        android:id="@+id/settings_additional_info_label"
+        style="@style/RegistrationTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+      <Button
+        android:id="@+id/user_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/update_user_data"/>
+    </LinearLayout>
+  </LinearLayout>
+</ScrollView>

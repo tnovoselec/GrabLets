@@ -7,6 +7,7 @@ import javax.inject.Inject;
 public class PreferenceAccessor {
 
   private static final String ACTIVE_MENU_ITEM = "active_menu_item";
+  private static final String NOTIFICATIONS_ENABLED = "notifications_enabled";
 
   private final SharedPreferences sharedPreferences;
 
@@ -22,6 +23,16 @@ public class PreferenceAccessor {
   public int getActiveMenuItem() {
     return getInt(ACTIVE_MENU_ITEM);
   }
+
+  public void setNotificationsEnabled(boolean enabled){
+    set(NOTIFICATIONS_ENABLED, enabled);
+  }
+
+  public boolean areNotificationsEnabled(){
+    return getBoolean(NOTIFICATIONS_ENABLED);
+  }
+
+  // Helper methods
 
   private boolean getBoolean(String key) {
     return sharedPreferences.getBoolean(key, false);

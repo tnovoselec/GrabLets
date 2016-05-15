@@ -16,8 +16,34 @@
 
   <style name="RegistrationTextAppearance" parent="TextAppearance.AppCompat.Medium">
     <item name="android:textColor">@android:color/white</item>
+    <item name="android:textSize">14sp</item>
   </style>
 
+  <style name="RegistrationTextAppearanceSmall" parent="TextAppearance.AppCompat.Medium">
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:textSize">12sp</item>
+  </style>
 
+  <style name="SettingsTextAppearance" parent="RegistrationTextAppearance">
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+  <style name="SettingsTextAppearanceSmall" parent="RegistrationTextAppearance">
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:textSize">12sp</item>
+  </style>
+
+  <style name="DividerHorizontal">
+    <item name="android:layout_height">1px</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:background">@android:color/white</item>
+    <item name="android:layout_weight">0</item>
+  </style>
+  <style name="DividerVertical">
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_width">1px</item>
+    <item name="android:background">@android:color/white</item>
+    <item name="android:layout_weight">0</item>
+  </style>
 
 </resources>

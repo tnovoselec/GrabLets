@@ -23,4 +23,9 @@
   <string name="user_additional_info">Napomena</string>
   <string name="register">Registriraj se!</string>
   <string name="user_delivery_time">Vrijeme dostave</string>
+  <string name="notifications">Obavijesti</string>
+  <string name="daily_menu_notification_message">Obavijesti me o dnevnom meniju</string>
+  <string name="delivery_time_default_value">13:00</string>
+  <string name="my_profile">Moj profil</string>
+  <string name="update_user_data">Ažuriraj podatke</string>
 </resources>

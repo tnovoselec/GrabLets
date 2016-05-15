@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.grablets.R;
+import com.grablets.Router;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.fragment.DailyMenuFragment;
@@ -34,6 +35,9 @@ public class MainActivity extends BaseActivity
 
   @Inject
   PreferenceAccessor preferenceAccessor;
+
+  @Inject
+  Router router;
 
   private DailyMenuFragment dailyMenuFragment;
   private RestaurantsFragment restaurantsFragment;
@@ -90,7 +94,7 @@ public class MainActivity extends BaseActivity
     } else if (id == R.id.nav_my_restaurants) {
       preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_RESTAURANTS.itemId);
     } else if (id == R.id.nav_settings) {
-      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.SETTINGS.itemId);
+      showSettings();
     }
 
     drawer.closeDrawer(GravityCompat.START);
@@ -113,5 +117,10 @@ public class MainActivity extends BaseActivity
       restaurantsFragment = RestaurantsFragment.create();
     }
     getSupportFragmentManager().beginTransaction().replace(R.id.main_container, restaurantsFragment, RestaurantsFragment.TAG).commit();
+  }
+
+  private void showSettings(){
+    preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.SETTINGS.itemId);
+    router.showSettingsActivity();
   }
 }

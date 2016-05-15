@@ -18,13 +18,19 @@
       </intent-filter>
     </activity>
     <activity
-      android:label="@string/registration"
       android:name=".activity.RegistrationActivity"
+      android:label="@string/registration"
       android:theme="@style/AppTheme.NoActionBar">
     </activity>
     <activity
       android:name=".activity.MainActivity"
       android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+    <activity
+      android:name=".activity.SettingsActivity"
+      android:label="@string/settings"
+      android:theme="@style/AppTheme.NoActionBar"
+      android:windowSoftInputMode="stateHidden">
     </activity>
   </application>
 

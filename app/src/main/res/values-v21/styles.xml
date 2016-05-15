@@ -27,7 +27,7 @@
 
   <style name="TextAppearance.TimePickerDialogStyle.TimeLabel" parent="@android:style/TextAppearance.Material">
 
-    <item name="android:textSize">60sp</item> <!-- from -->
+    <item name="android:textSize">60sp</item>
     <item name="android:textColor">@android:color/white</item>
 
   </style>
