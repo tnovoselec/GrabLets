@@ -4,6 +4,7 @@
 
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission  android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
   <application
     android:name=".GrabLetsApplication"
@@ -45,6 +46,7 @@
     </receiver>
     <receiver android:name=".receiver.AlarmReceiver"/>
     <service android:name=".service.DailyMenuService"/>
+    <service android:name=".service.OverlayService"/>
   </application>
 
 </manifest>

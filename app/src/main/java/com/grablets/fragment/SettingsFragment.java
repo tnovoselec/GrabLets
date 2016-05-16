@@ -1,9 +1,13 @@
 package com.grablets.fragment;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,7 @@ import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.di.ComponentProvider;
+import com.grablets.service.OverlayService;
 
 import java.util.Calendar;
 
@@ -57,10 +62,32 @@ public class SettingsFragment extends BaseFragment {
     return new SettingsFragment();
   }
 
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
+
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_settings, container, false);
+  }
+
+  @Override
+  public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.settings, menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == R.id.action_settings){
+      getActivity().startService(new Intent(getContext(), OverlayService.class));
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
+
   }
 
   @Override
@@ -101,6 +128,7 @@ public class SettingsFragment extends BaseFragment {
     Calendar calendar = Calendar.getInstance();
     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
     calendar.set(Calendar.MINUTE, minute);
+    calendar.set(Calendar.SECOND, 0);
     preferenceAccessor.setNotificationsTime(calendar.getTimeInMillis());
     notificationScheduler.scheduleNotificationAlarm();
   }

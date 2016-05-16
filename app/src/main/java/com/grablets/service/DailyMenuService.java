@@ -15,6 +15,6 @@ public class DailyMenuService extends IntentService {
 
   @Override
   protected void onHandleIntent(Intent intent) {
-
+    startService(new Intent(this, OverlayService.class));
   }
 }
