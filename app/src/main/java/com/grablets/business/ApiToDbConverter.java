@@ -27,7 +27,7 @@ public class ApiToDbConverter {
     return dbRestaurants;
   }
 
-  private static List<DbRestaurantMenuItem> fromRestaurantMenuItem(List<ApiDailyMenuItem> dailyMenuItems, String restaurantId) {
+  public static List<DbRestaurantMenuItem> fromRestaurantMenuItem(List<ApiDailyMenuItem> dailyMenuItems, String restaurantId) {
     List<DbRestaurantMenuItem> dbRestaurantMenuItems = new ArrayList<>();
 
     for (ApiDailyMenuItem apiDailyMenuItem : dailyMenuItems) {

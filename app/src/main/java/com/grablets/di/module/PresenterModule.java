@@ -17,8 +17,8 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  DailyMenuPresenter dailyMenuPresenter(){
-    return new DailyMenuPresenter();
+  DailyMenuPresenter dailyMenuPresenter(GrabLetsClient grabLetsClient, RestaurantsRepository restaurantsRepository){
+    return new DailyMenuPresenter(grabLetsClient, restaurantsRepository);
   }
 
   @Provides
