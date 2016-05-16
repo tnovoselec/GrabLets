@@ -63,7 +63,7 @@ public class OverlayService extends Service {
     windowManager.addView(overlayView, params);
 
     ViewGroup.LayoutParams params = container.getLayoutParams();
-    params.height = getScreenHeight() /2;
+    params.height = getScreenHeight() * 2 / 3;
     container.setLayoutParams(params);
 
   }

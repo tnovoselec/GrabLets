@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="#22000000"
+  android:background="#88000000"
   android:orientation="vertical">
   <LinearLayout
     android:id="@+id/daily_menu_overlay_container"
