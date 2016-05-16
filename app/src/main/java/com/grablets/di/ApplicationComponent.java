@@ -5,9 +5,11 @@ import android.app.Application;
 import android.content.Context;
 
 import com.grablets.GrabLetsApplication;
+import com.grablets.api.GrabLetsClient;
 import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.module.ApplicationModule;
+import com.grablets.di.module.GrabLetsApiModule;
 import com.grablets.di.qualifier.ForApplication;
 import com.grablets.receiver.AlarmReceiver;
 import com.grablets.receiver.BootBroadcastReceiver;
@@ -20,6 +22,7 @@ import dagger.Component;
 @Component(
     modules = {
         ApplicationModule.class,
+        GrabLetsApiModule.class
     }
 )
 public interface ApplicationComponent {
@@ -44,6 +47,8 @@ public interface ApplicationComponent {
   PreferenceAccessor getPreferenceAccessor();
 
   NotificationScheduler getNotificationScheduler();
+
+  GrabLetsClient getGrabLetsClient();
 
   void inject(GrabLetsApplication commerceApplication);
 

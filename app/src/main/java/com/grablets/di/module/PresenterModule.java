@@ -1,6 +1,7 @@
 package com.grablets.di.module;
 
 import com.grablets.Router;
+import com.grablets.api.GrabLetsClient;
 import com.grablets.di.scope.ActivityScope;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.mvp.presenter.LoginPresenter;
@@ -21,8 +22,8 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  RestaurantsPresenter restaurantsPresenter(){
-    return new RestaurantsPresenter();
+  RestaurantsPresenter restaurantsPresenter(GrabLetsClient grabLetsClient){
+    return new RestaurantsPresenter(grabLetsClient);
   }
 
   @Provides
