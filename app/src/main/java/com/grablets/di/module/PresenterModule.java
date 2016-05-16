@@ -7,6 +7,7 @@ import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.mvp.presenter.LoginPresenter;
 import com.grablets.mvp.presenter.RegistrationPresenter;
 import com.grablets.mvp.presenter.RestaurantsPresenter;
+import com.grablets.repository.RestaurantsRepository;
 
 import dagger.Module;
 import dagger.Provides;
@@ -22,8 +23,8 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  RestaurantsPresenter restaurantsPresenter(GrabLetsClient grabLetsClient){
-    return new RestaurantsPresenter(grabLetsClient);
+  RestaurantsPresenter restaurantsPresenter(GrabLetsClient grabLetsClient, RestaurantsRepository restaurantsRepository){
+    return new RestaurantsPresenter(grabLetsClient, restaurantsRepository);
   }
 
   @Provides
