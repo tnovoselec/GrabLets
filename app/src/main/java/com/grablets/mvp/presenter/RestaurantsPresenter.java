@@ -12,8 +12,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Completable;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.View> implements RestaurantsMvp.Presenter {
@@ -31,7 +33,7 @@ public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.Vi
   public void getRestaurants() {
     Observable.defer(grabLetsClient::getRestaurants)
         .map(ApiToDbConverter::fromRestaurants)
-        .doOnNext(this::persistRestaurants)
+        .flatMap(restaurants -> Observable.zip(Observable.just(restaurants), persistRestaurants(restaurants).toObservable(), (Func2<List<DbRestaurant>, Object, List<DbRestaurant>>) (restaurants1, o) -> restaurants1))
         .map(DbToViewModelConverter::fromRestaurants)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -50,7 +52,8 @@ public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.Vi
     throwable.printStackTrace();
   }
 
-  private void persistRestaurants(List<DbRestaurant> restaurants){
-    restaurantsRepository.saveRestaurants(restaurants);
+  private Completable persistRestaurants(List<DbRestaurant> restaurants) {
+    return restaurantsRepository.deleteRestaurants().endWith(
+        restaurantsRepository.saveRestaurants(restaurants));
   }
 }

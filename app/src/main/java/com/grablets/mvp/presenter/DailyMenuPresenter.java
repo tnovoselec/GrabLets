@@ -51,6 +51,7 @@ public class DailyMenuPresenter extends SubscribingPresenter<DailyMenuMvp.View> 
   }
 
   private void persistRestaurants(List<DbRestaurant> restaurants){
+    restaurantsRepository.deleteRestaurants();
     restaurantsRepository.saveRestaurants(restaurants);
   }
 }

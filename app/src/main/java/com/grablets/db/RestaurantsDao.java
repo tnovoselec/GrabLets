@@ -9,6 +9,7 @@ import com.hannesdorfmann.sqlbrite.dao.Dao;
 
 import java.util.List;
 
+import rx.Completable;
 import rx.Observable;
 
 public class RestaurantsDao extends Dao {
@@ -41,7 +42,12 @@ public class RestaurantsDao extends Dao {
         .mapToList(DbRestaurantMapper.MAPPER);
   }
 
-  public void insert(List<DbRestaurant> restaurants) {
+  public Completable insert(List<DbRestaurant> restaurants) {
+    return Completable.fromAction(() -> insertRestaurants(restaurants));
+
+  }
+
+  private void insertRestaurants(List<DbRestaurant> restaurants) {
     for (DbRestaurant restaurant : restaurants) {
       ContentValues values = DbRestaurantMapper.contentValues()
           .id(restaurant.getId())
@@ -49,7 +55,12 @@ public class RestaurantsDao extends Dao {
           .description(restaurant.getDescription())
           .imageUrl(restaurant.getImageUrl())
           .build();
-      Observable<Long> insert = insert(DbRestaurant.TABLE_NAME, values, SQLiteDatabase.CONFLICT_REPLACE);
+      db.insert(DbRestaurant.TABLE_NAME, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
+  }
+
+  public Completable delete() {
+    return Completable.fromAction(() ->
+        db.delete(DbRestaurant.TABLE_NAME, null));
   }
 }

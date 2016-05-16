@@ -27,8 +27,9 @@ public class DbRestaurantMenuItem {
   public DbRestaurantMenuItem() {
   }
 
-  public DbRestaurantMenuItem(String id, String restaurantId,  String title, String description, String imageUrl) {
+  public DbRestaurantMenuItem(String id, String restaurantId, String title, String description, String imageUrl) {
     this.description = description;
+    this.restaurantId = restaurantId;
     this.id = id;
     this.imageUrl = imageUrl;
     this.title = title;

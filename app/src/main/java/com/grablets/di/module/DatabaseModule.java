@@ -16,36 +16,37 @@ import dagger.Provides;
 @Module
 public class DatabaseModule {
 
-  private static final int DB_VERSION = 2;
+  private static final int DB_VERSION = 3;
   private static final String DB_NAME = "GrabLets.db";
 
   private final Context context;
+  private final DaoManager daoManager;
+
+  private final RestaurantsDao restaurantsDao;
+  private final RestaurantMenuItemDao restaurantMenuItemDao;
 
   @Inject
   public DatabaseModule(@ForApplication Context context) {
     this.context = context;
-  }
-
-  @Provides
-  @Singleton
-  public RestaurantsDao provideRestaurantsDao() {
-    return new RestaurantsDao();
-  }
-
-  @Provides
-  @Singleton
-  public RestaurantMenuItemDao provideRestaurantMenuItemDao() {
-    return new RestaurantMenuItemDao();
-  }
-
-  @Provides
-  @Singleton
-  public DaoManager provideDaoManager(RestaurantsDao restaurantsDao, RestaurantMenuItemDao restaurantMenuItemDao) {
-    return DaoManager.with(context).databaseName(DB_NAME)
+    this.restaurantsDao = new RestaurantsDao();
+    this.restaurantMenuItemDao = new RestaurantMenuItemDao();
+    this.daoManager = DaoManager.with(context).databaseName(DB_NAME)
         .version(DB_VERSION)
         .add(restaurantsDao)
         .add(restaurantMenuItemDao)
         .logging(true)
         .build();
+  }
+
+  @Provides
+  @Singleton
+  public RestaurantsDao provideRestaurantsDao() {
+    return restaurantsDao;
+  }
+
+  @Provides
+  @Singleton
+  public RestaurantMenuItemDao provideRestaurantMenuItemDao() {
+    return restaurantMenuItemDao;
   }
 }

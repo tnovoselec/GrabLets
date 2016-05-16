@@ -9,13 +9,16 @@ import com.hannesdorfmann.sqlbrite.dao.Dao;
 
 import java.util.List;
 
+import rx.Completable;
 import rx.Observable;
 
 public class RestaurantMenuItemDao extends Dao {
+
   @Override
   public void createTable(SQLiteDatabase database) {
     CREATE_TABLE(DbRestaurantMenuItem.TABLE_NAME,
         DbRestaurantMenuItem.COL_ID + " TEXT PRIMARY KEY NOT NULL",
+        DbRestaurantMenuItem.COL_RESTAURANT_ID + " TEXT",
         DbRestaurantMenuItem.COL_TITLE + " TEXT",
         DbRestaurantMenuItem.COL_DESCRIPTION + " TEXT",
         DbRestaurantMenuItem.COL_IMAGE_URL + " TEXT")
@@ -41,7 +44,11 @@ public class RestaurantMenuItemDao extends Dao {
         .mapToList(DbRestaurantMenuItemMapper.MAPPER);
   }
 
-  public void insert(List<DbRestaurantMenuItem> restaurantMenuItems) {
+  public Completable insert(List<DbRestaurantMenuItem> restaurantMenuItems) {
+    return Completable.fromAction(() -> insertRestaurantMenuItems(restaurantMenuItems));
+  }
+
+  private void insertRestaurantMenuItems(List<DbRestaurantMenuItem> restaurantMenuItems) {
     for (DbRestaurantMenuItem restaurantMenuItem : restaurantMenuItems) {
       ContentValues values = DbRestaurantMenuItemMapper.contentValues()
           .id(restaurantMenuItem.getId())
@@ -50,7 +57,12 @@ public class RestaurantMenuItemDao extends Dao {
           .description(restaurantMenuItem.getDescription())
           .imageUrl(restaurantMenuItem.getImageUrl())
           .build();
-      Observable<Long> insert = insert(DbRestaurantMenuItem.TABLE_NAME, values, SQLiteDatabase.CONFLICT_REPLACE);
+      db.insert(DbRestaurantMenuItem.TABLE_NAME, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
+  }
+
+  public Completable delete() {
+    return Completable.fromAction(() ->
+        db.delete(DbRestaurantMenuItem.TABLE_NAME, null));
   }
 }
