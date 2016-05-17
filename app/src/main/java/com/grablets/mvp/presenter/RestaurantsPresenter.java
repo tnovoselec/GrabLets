@@ -1,38 +1,28 @@
 package com.grablets.mvp.presenter;
 
-import com.grablets.api.GrabLetsClient;
-import com.grablets.business.ApiToDbConverter;
 import com.grablets.business.DbToViewModelConverter;
-import com.grablets.db.model.DbRestaurant;
+import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.mvp.RestaurantsMvp;
-import com.grablets.repository.RestaurantsRepository;
 import com.grablets.viewmodel.RestaurantsViewModel;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Completable;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.View> implements RestaurantsMvp.Presenter {
 
-  private final GrabLetsClient grabLetsClient;
-  private final RestaurantsRepository restaurantsRepository;
+ private final GetRestaurantsUseCase getRestaurantsUseCase;
 
   @Inject
-  public RestaurantsPresenter(GrabLetsClient grabLetsClient, RestaurantsRepository restaurantsRepository) {
-    this.grabLetsClient = grabLetsClient;
-    this.restaurantsRepository = restaurantsRepository;
+  public RestaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase) {
+    this.getRestaurantsUseCase = getRestaurantsUseCase;
   }
 
   @Override
   public void getRestaurants() {
-    Observable.defer(grabLetsClient::getRestaurants)
-        .map(ApiToDbConverter::fromRestaurants)
-        .flatMap(dbRestaurants -> persistRestaurants(dbRestaurants).andThen(Observable.just(dbRestaurants)))
+    Observable.defer(getRestaurantsUseCase::execute)
         .map(DbToViewModelConverter::fromRestaurants)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -51,8 +41,5 @@ public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.Vi
     throwable.printStackTrace();
   }
 
-  private Completable persistRestaurants(List<DbRestaurant> restaurants) {
-    return restaurantsRepository.deleteRestaurants().endWith(
-        restaurantsRepository.saveRestaurants(restaurants));
-  }
+
 }

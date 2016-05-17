@@ -2,8 +2,8 @@ package com.grablets.mvp.presenter;
 
 import com.grablets.business.DbToViewModelConverter;
 import com.grablets.interactor.GetRestaurantsUseCase;
-import com.grablets.mvp.DailyMenuMvp;
-import com.grablets.viewmodel.DailyMenuViewModel;
+import com.grablets.mvp.DailyMenuOverlayMvp;
+import com.grablets.viewmodel.DailyMenuOverlayViewModel;
 
 import javax.inject.Inject;
 
@@ -11,19 +11,19 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class DailyMenuPresenter extends SubscribingPresenter<DailyMenuMvp.View> implements DailyMenuMvp.Presenter {
+public class DailyMenuOverlayPresenter extends SubscribingPresenter<DailyMenuOverlayMvp.View> implements DailyMenuOverlayMvp.Presenter {
 
   private final GetRestaurantsUseCase getRestaurantsUseCase;
 
   @Inject
-  public DailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase) {
+  public DailyMenuOverlayPresenter(GetRestaurantsUseCase getRestaurantsUseCase) {
     this.getRestaurantsUseCase = getRestaurantsUseCase;
   }
 
   @Override
   public void getDailyMenu() {
     Observable.defer(getRestaurantsUseCase::execute)
-        .map(DbToViewModelConverter::fromRestaurantsToDailyMenu)
+        .map(DbToViewModelConverter::fromRestaurantsToDailyMenuOverlay)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
@@ -31,9 +31,9 @@ public class DailyMenuPresenter extends SubscribingPresenter<DailyMenuMvp.View> 
             this::onDailyMenuPullingFailed);
   }
 
-  private void onDailyMenuPulled(DailyMenuViewModel dailyMenuViewModel) {
-    if (isViewAttached()) {
-      getView().renderDailyMenu(dailyMenuViewModel);
+  private void onDailyMenuPulled(DailyMenuOverlayViewModel dailyMenuOverlayViewModel) {
+    if (getView() != null) {
+      getView().renderDailyMenu(dailyMenuOverlayViewModel);
     }
   }
 

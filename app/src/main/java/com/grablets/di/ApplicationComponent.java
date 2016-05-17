@@ -12,10 +12,13 @@ import com.grablets.di.module.ApplicationModule;
 import com.grablets.di.module.DatabaseModule;
 import com.grablets.di.module.GrabLetsApiModule;
 import com.grablets.di.module.RepositoryModule;
+import com.grablets.di.module.UseCaseModule;
 import com.grablets.di.qualifier.ForApplication;
+import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.receiver.AlarmReceiver;
 import com.grablets.receiver.BootBroadcastReceiver;
 import com.grablets.repository.RestaurantsRepository;
+import com.grablets.service.DailyMenuOverlayService;
 
 import javax.inject.Singleton;
 
@@ -27,7 +30,8 @@ import dagger.Component;
         ApplicationModule.class,
         GrabLetsApiModule.class,
         DatabaseModule.class,
-        RepositoryModule.class
+        RepositoryModule.class,
+        UseCaseModule.class
     }
 )
 public interface ApplicationComponent {
@@ -58,9 +62,13 @@ public interface ApplicationComponent {
 
   RestaurantsRepository getRestaurantsRepository();
 
+  GetRestaurantsUseCase getRestaurantsUseCase();
+
   void inject(GrabLetsApplication commerceApplication);
 
   void inject(BootBroadcastReceiver bootBroadcastReceiver);
 
   void inject(AlarmReceiver alarmReceiver);
+
+  void inject(DailyMenuOverlayService dailyMenuOverlayService);
 }

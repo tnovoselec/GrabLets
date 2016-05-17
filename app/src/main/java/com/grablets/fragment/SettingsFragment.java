@@ -21,7 +21,7 @@ import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.di.ComponentProvider;
-import com.grablets.service.OverlayService;
+import com.grablets.service.DailyMenuOverlayService;
 
 import java.util.Calendar;
 
@@ -83,7 +83,7 @@ public class SettingsFragment extends BaseFragment {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == R.id.action_settings){
-      getActivity().startService(new Intent(getContext(), OverlayService.class));
+      getActivity().startService(new Intent(getContext(), DailyMenuOverlayService.class));
       return true;
     }
     return super.onOptionsItemSelected(item);

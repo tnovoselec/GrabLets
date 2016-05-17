@@ -14,11 +14,13 @@ public class DailyMenuViewModel {
     public final String title;
     public final String imageUrl;
     public final String description;
+    public final double price;
 
-    public MenuItemViewModel(String title, String description, String imageUrl) {
+    public MenuItemViewModel(String title, String description, String imageUrl, double price) {
       this.description = description;
       this.imageUrl = imageUrl;
       this.title = title;
+      this.price = price;
     }
   }
 }

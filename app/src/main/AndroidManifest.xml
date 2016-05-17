@@ -45,8 +45,7 @@
       </intent-filter>
     </receiver>
     <receiver android:name=".receiver.AlarmReceiver"/>
-    <service android:name=".service.DailyMenuService"/>
-    <service android:name=".service.OverlayService"/>
+    <service android:name=".service.DailyMenuOverlayService"/>
   </application>
 
 </manifest>

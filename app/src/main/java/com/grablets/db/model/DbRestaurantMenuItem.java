@@ -12,6 +12,7 @@ public class DbRestaurantMenuItem {
   public static final String COL_TITLE = "title";
   public static final String COL_DESCRIPTION = "description";
   public static final String COL_IMAGE_URL = "imageUrl";
+  public static final String COL_PRICE = "price";
 
   @Column(COL_ID)
   private String id;
@@ -23,16 +24,19 @@ public class DbRestaurantMenuItem {
   private String description;
   @Column(COL_IMAGE_URL)
   private String imageUrl;
+  @Column(COL_PRICE)
+  private double price;
 
   public DbRestaurantMenuItem() {
   }
 
-  public DbRestaurantMenuItem(String id, String restaurantId, String title, String description, String imageUrl) {
+  public DbRestaurantMenuItem(String id, String restaurantId, String title, String description, String imageUrl, double price) {
     this.description = description;
     this.restaurantId = restaurantId;
     this.id = id;
     this.imageUrl = imageUrl;
     this.title = title;
+    this.price = price;
   }
 
   public String getDescription() {
@@ -73,5 +77,13 @@ public class DbRestaurantMenuItem {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
   }
 }

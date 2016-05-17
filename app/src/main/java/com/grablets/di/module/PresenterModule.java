@@ -1,13 +1,13 @@
 package com.grablets.di.module;
 
 import com.grablets.Router;
-import com.grablets.api.GrabLetsClient;
 import com.grablets.di.scope.ActivityScope;
+import com.grablets.interactor.GetRestaurantsUseCase;
+import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.mvp.presenter.LoginPresenter;
 import com.grablets.mvp.presenter.RegistrationPresenter;
 import com.grablets.mvp.presenter.RestaurantsPresenter;
-import com.grablets.repository.RestaurantsRepository;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,14 +17,20 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  DailyMenuPresenter dailyMenuPresenter(GrabLetsClient grabLetsClient, RestaurantsRepository restaurantsRepository){
-    return new DailyMenuPresenter(grabLetsClient, restaurantsRepository);
+  DailyMenuPresenter dailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase){
+    return new DailyMenuPresenter(getRestaurantsUseCase);
   }
 
   @Provides
   @ActivityScope
-  RestaurantsPresenter restaurantsPresenter(GrabLetsClient grabLetsClient, RestaurantsRepository restaurantsRepository){
-    return new RestaurantsPresenter(grabLetsClient, restaurantsRepository);
+  RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase){
+    return new RestaurantsPresenter(getRestaurantsUseCase);
+  }
+
+  @Provides
+  @ActivityScope
+  DailyMenuOverlayPresenter dailyMenuOverlayPresenter(GetRestaurantsUseCase getRestaurantsUseCase){
+    return new DailyMenuOverlayPresenter(getRestaurantsUseCase);
   }
 
   @Provides

@@ -36,8 +36,8 @@ public class ApiToDbConverter {
           restaurantId,
           apiDailyMenuItem.title,
           apiDailyMenuItem.description,
-          apiDailyMenuItem.imageUrl
-      );
+          apiDailyMenuItem.imageUrl,
+          0);
       dbRestaurantMenuItems.add(dbRestaurantMenuItem);
     }
 

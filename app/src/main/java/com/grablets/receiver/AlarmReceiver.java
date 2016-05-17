@@ -6,7 +6,7 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 
 import com.grablets.GrabLetsApplication;
 import com.grablets.business.NotificationScheduler;
-import com.grablets.service.DailyMenuService;
+import com.grablets.service.DailyMenuOverlayService;
 
 import javax.inject.Inject;
 
@@ -21,7 +21,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
     notificationScheduler.scheduleNotificationAlarm();
 
-    Intent service = new Intent(context, DailyMenuService.class);
+    Intent service = new Intent(context, DailyMenuOverlayService.class);
 
     startWakefulService(context, service);
   }
