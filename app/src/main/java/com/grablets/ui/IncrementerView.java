@@ -69,4 +69,9 @@ public class IncrementerView extends LinearLayout {
   public int getCurrentAmount() {
     return currentAmount;
   }
+
+  public void setAmount(int newAmount){
+    currentAmount = newAmount;
+    amount.setText(String.valueOf(currentAmount));
+  }
 }

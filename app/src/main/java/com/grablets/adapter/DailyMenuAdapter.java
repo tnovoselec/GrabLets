@@ -12,7 +12,9 @@ import com.grablets.R;
 import com.grablets.ui.IncrementerView;
 import com.grablets.viewmodel.DailyMenuViewModel;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +27,7 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
 
   private final List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels;
   private final MenuItemAmountListener menuItemAmountListener;
+  private final Map<String, Integer> basketItems = new HashMap<>();
 
   public DailyMenuAdapter(List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels, MenuItemAmountListener menuItemAmountListener) {
     this.menuItemViewModels = menuItemViewModels;
@@ -74,6 +77,8 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
       itemTitle.setText(menuItemViewModel.title);
       itemDescription.setText(menuItemViewModel.description);
       itemIncrementer.setAmountListener(this);
+      Integer amount = basketItems.get(menuItemViewModel.id);
+      itemIncrementer.setAmount(amount == null ? 0 : amount);
     }
 
     @Override
@@ -81,6 +86,7 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
       if (menuItemAmountListener != null) {
         menuItemAmountListener.onAmountChanged(menuItemViewModel.id, amount);
       }
+      basketItems.put(menuItemViewModel.id, amount);
     }
   }
 }
