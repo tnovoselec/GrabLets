@@ -37,7 +37,7 @@ public class ApiToDbConverter {
           apiDailyMenuItem.title,
           apiDailyMenuItem.description,
           apiDailyMenuItem.imageUrl,
-          0);
+          apiDailyMenuItem.price);
       dbRestaurantMenuItems.add(dbRestaurantMenuItem);
     }
 

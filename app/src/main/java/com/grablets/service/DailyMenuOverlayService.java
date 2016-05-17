@@ -4,7 +4,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.net.Uri;
+import android.os.Build;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -92,6 +95,16 @@ public class DailyMenuOverlayService extends Service implements DailyMenuOverlay
 
   @Override
   public void renderDailyMenu(DailyMenuOverlayViewModel dailyMenuOverlayViewModel) {
+    if (canDrawOverlay()) {
+      renderOverlay(dailyMenuOverlayViewModel);
+    } else {
+      goToSettings();
+      renderNotification(dailyMenuOverlayViewModel);
+      stopSelf();
+    }
+  }
+
+  private void renderOverlay(DailyMenuOverlayViewModel dailyMenuOverlayViewModel) {
     overlayView = LayoutInflater.from(this).inflate(R.layout.layout_overlay, null, false);
     ButterKnife.bind(this, overlayView);
 
@@ -111,6 +124,24 @@ public class DailyMenuOverlayService extends Service implements DailyMenuOverlay
     ViewGroup.LayoutParams params = container.getLayoutParams();
     params.height = getScreenHeight() * 2 / 3;
     container.setLayoutParams(params);
+  }
+
+  private void renderNotification(DailyMenuOverlayViewModel dailyMenuOverlayViewModel) {
+
+  }
+
+  private boolean canDrawOverlay() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      return Settings.canDrawOverlays(this);
+    }
+    return true;
+  }
+
+  private void goToSettings() {
+    Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+        Uri.parse("package:" + getPackageName()));
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
   }
 
   @Override

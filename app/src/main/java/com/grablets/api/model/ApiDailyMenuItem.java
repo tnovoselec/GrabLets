@@ -6,5 +6,5 @@ public class ApiDailyMenuItem {
   public String title;
   public String description;
   public String imageUrl;
-
+  public double price;
 }
