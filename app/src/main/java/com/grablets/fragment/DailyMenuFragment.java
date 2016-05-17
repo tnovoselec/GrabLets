@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View {
+public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View, DailyMenuAdapter.MenuItemAmountListener {
 
   public static final String TAG = DailyMenuFragment.class.getSimpleName();
 
@@ -75,12 +75,17 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
 
   @Override
   public void renderDailyMenu(DailyMenuViewModel dailyMenuViewModel) {
-    dailyMenuAdapter = new DailyMenuAdapter(dailyMenuViewModel.menuItemViewModels);
+    dailyMenuAdapter = new DailyMenuAdapter(dailyMenuViewModel.menuItemViewModels, this);
     dailyMenuRecyclerView.setAdapter(dailyMenuAdapter);
   }
 
   @Override
   public void showErrorMessage(int errorMessageId) {
 
+  }
+
+  @Override
+  public void onAmountChanged(String menuItemId, int newAmount) {
+    dailyMenuPresenter.onMenuItemAmountChanged(menuItemId, newAmount);
   }
 }

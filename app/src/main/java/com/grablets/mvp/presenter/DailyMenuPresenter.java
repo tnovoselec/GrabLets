@@ -1,5 +1,6 @@
 package com.grablets.mvp.presenter;
 
+import com.grablets.business.BasketManager;
 import com.grablets.business.DbToViewModelConverter;
 import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.mvp.DailyMenuMvp;
@@ -14,10 +15,12 @@ import rx.schedulers.Schedulers;
 public class DailyMenuPresenter extends SubscribingPresenter<DailyMenuMvp.View> implements DailyMenuMvp.Presenter {
 
   private final GetRestaurantsUseCase getRestaurantsUseCase;
+  private final BasketManager basketManager;
 
   @Inject
-  public DailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase) {
+  public DailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase, BasketManager basketManager) {
     this.getRestaurantsUseCase = getRestaurantsUseCase;
+    this.basketManager = basketManager;
   }
 
   @Override
@@ -29,6 +32,11 @@ public class DailyMenuPresenter extends SubscribingPresenter<DailyMenuMvp.View> 
         .subscribe(
             this::onDailyMenuPulled,
             this::onDailyMenuPullingFailed);
+  }
+
+  @Override
+  public void onMenuItemAmountChanged(String menuItemId, int newAmount) {
+    basketManager.basketEntryChanged(menuItemId, newAmount);
   }
 
   private void onDailyMenuPulled(DailyMenuViewModel dailyMenuViewModel) {

@@ -1,6 +1,7 @@
 package com.grablets.di.module;
 
 import com.grablets.Router;
+import com.grablets.business.BasketManager;
 import com.grablets.di.scope.ActivityScope;
 import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
@@ -17,8 +18,8 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  DailyMenuPresenter dailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase){
-    return new DailyMenuPresenter(getRestaurantsUseCase);
+  DailyMenuPresenter dailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase, BasketManager basketManager){
+    return new DailyMenuPresenter(getRestaurantsUseCase, basketManager);
   }
 
   @Provides

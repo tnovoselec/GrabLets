@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.grablets.R;
+import com.grablets.ui.IncrementerView;
 import com.grablets.viewmodel.DailyMenuViewModel;
 
 import java.util.List;
@@ -18,10 +19,16 @@ import butterknife.ButterKnife;
 
 public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.DailyMenuViewHolder> {
 
-  private List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels;
+  public interface MenuItemAmountListener {
+    void onAmountChanged(String menuItemId, int newAmount);
+  }
 
-  public DailyMenuAdapter(List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels) {
+  private final List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels;
+  private final MenuItemAmountListener menuItemAmountListener;
+
+  public DailyMenuAdapter(List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels, MenuItemAmountListener menuItemAmountListener) {
     this.menuItemViewModels = menuItemViewModels;
+    this.menuItemAmountListener = menuItemAmountListener;
   }
 
   @Override
@@ -40,14 +47,18 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
     return menuItemViewModels.size();
   }
 
-  class DailyMenuViewHolder extends RecyclerView.ViewHolder {
+  class DailyMenuViewHolder extends RecyclerView.ViewHolder implements IncrementerView.AmountListener {
 
     @BindView(R.id.item_menu_title)
     TextView itemTitle;
     @BindView(R.id.item_menu_description)
     TextView itemDescription;
-    @BindView(R.id.item_image)
+    @BindView(R.id.item_menu_image)
     ImageView itemImage;
+    @BindView(R.id.item_menu_incrementer)
+    IncrementerView itemIncrementer;
+
+    private DailyMenuViewModel.MenuItemViewModel menuItemViewModel;
 
     public DailyMenuViewHolder(View itemView) {
       super(itemView);
@@ -55,12 +66,21 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
     }
 
     void fillView(DailyMenuViewModel.MenuItemViewModel menuItemViewModel) {
+      this.menuItemViewModel = menuItemViewModel;
       Glide.with(itemImage.getContext())
           .load(menuItemViewModel.imageUrl)
           .centerCrop()
           .into(itemImage);
       itemTitle.setText(menuItemViewModel.title);
       itemDescription.setText(menuItemViewModel.description);
+      itemIncrementer.setAmountListener(this);
+    }
+
+    @Override
+    public void onAmountChanged(int amount) {
+      if (menuItemAmountListener != null) {
+        menuItemAmountListener.onAmountChanged(menuItemViewModel.id, amount);
+      }
     }
   }
 }

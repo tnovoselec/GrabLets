@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.grablets.business.BasketManager;
 import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.qualifier.ForApplication;
@@ -52,5 +53,11 @@ public class ApplicationModule {
   @Singleton
   protected NotificationScheduler notificationScheduler(@ForApplication Context context, PreferenceAccessor preferenceAccessor) {
     return new NotificationScheduler(context, preferenceAccessor);
+  }
+
+  @Provides
+  @Singleton
+  protected BasketManager basketManager(){
+    return new BasketManager();
   }
 }

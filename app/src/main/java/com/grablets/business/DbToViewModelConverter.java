@@ -34,6 +34,7 @@ public class DbToViewModelConverter {
     List<MenuItemViewModel> menuItemViewModels = new ArrayList<>();
     for (DbRestaurantMenuItem dbRestaurantMenuItem : restaurantMenuItems) {
       MenuItemViewModel menuItemViewModel = new MenuItemViewModel(
+          dbRestaurantMenuItem.getId(),
           dbRestaurantMenuItem.getTitle(),
           dbRestaurantMenuItem.getDescription(),
           dbRestaurantMenuItem.getImageUrl(),

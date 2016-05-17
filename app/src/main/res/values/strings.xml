@@ -28,4 +28,10 @@
   <string name="delivery_time_default_value">13:00</string>
   <string name="my_profile">Moj profil</string>
   <string name="update_user_data">Ažuriraj podatke</string>
+  <string name="checkout_default_message">Košarica je prazna</string>
+
+  <plurals name="basket_item_number">
+    <item quantity="one">%d jelo u košarici</item>
+    <item quantity="other">%d jela u košarici</item>
+  </plurals>
 </resources>

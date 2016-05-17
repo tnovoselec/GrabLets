@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.grablets.GrabLetsApplication;
 import com.grablets.api.GrabLetsClient;
+import com.grablets.business.BasketManager;
 import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.module.ApplicationModule;
@@ -57,6 +58,8 @@ public interface ApplicationComponent {
   PreferenceAccessor getPreferenceAccessor();
 
   NotificationScheduler getNotificationScheduler();
+
+  BasketManager getBasketManager();
 
   GrabLetsClient getGrabLetsClient();
 

@@ -14,10 +14,15 @@ import butterknife.OnClick;
 
 public class IncrementerView extends LinearLayout {
 
+  public interface AmountListener {
+    void onAmountChanged(int amount);
+  }
+
   @BindView(R.id.amount)
   TextView amount;
 
   private int currentAmount = 0;
+  private AmountListener amountListener;
 
   public IncrementerView(Context context) {
     this(context, null);
@@ -37,10 +42,17 @@ public class IncrementerView extends LinearLayout {
     ButterKnife.bind(this, this);
   }
 
+  public void setAmountListener(AmountListener amountListener) {
+    this.amountListener = amountListener;
+  }
+
   @OnClick(R.id.increment_amount)
   protected void onIncrementClicked() {
     currentAmount++;
     amount.setText(String.valueOf(currentAmount));
+    if (amountListener != null){
+      amountListener.onAmountChanged(currentAmount);
+    }
   }
 
   @OnClick(R.id.decrement_amount)
@@ -49,9 +61,12 @@ public class IncrementerView extends LinearLayout {
       currentAmount--;
       amount.setText(String.valueOf(currentAmount));
     }
+    if (amountListener != null){
+      amountListener.onAmountChanged(currentAmount);
+    }
   }
 
-  public int getCurrentAmount(){
+  public int getCurrentAmount() {
     return currentAmount;
   }
 }
