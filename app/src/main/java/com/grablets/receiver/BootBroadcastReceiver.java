@@ -17,6 +17,7 @@ public class BootBroadcastReceiver extends BaseBroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
+    super.onReceive(context, intent);
     if (intent.getAction().equals(ACTION_BOOT)) {
       notificationScheduler.scheduleNotificationAlarm();
     }
