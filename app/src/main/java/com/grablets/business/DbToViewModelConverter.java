@@ -82,15 +82,15 @@ public class DbToViewModelConverter {
     return new DailyMenuOverlayViewModel(data);
   }
 
-  public static CheckoutViewModel fromBasketAndUserData(List<DbBasketItem> basketItems, List<DbRestaurantMenuItem> dbRestaurantMenuItems){
+  public static CheckoutViewModel fromBasketAndUserData(List<DbBasketItem> basketItems, List<DbRestaurantMenuItem> dbRestaurantMenuItems) {
 
     List<CheckoutMenuItemViewModel> menuItemViewModels = new ArrayList<>();
-    for (DbBasketItem basketItem : basketItems){
+    for (DbBasketItem basketItem : basketItems) {
       DbRestaurantMenuItem restaurantMenuItem = findMenuItemById(basketItem.getMenuItemId(), dbRestaurantMenuItems);
       CheckoutMenuItemViewModel checkoutMenuItemViewModel = new CheckoutMenuItemViewModel(
           basketItem.getAmount(),
           basketItem.getMenuItemId(),
-          restaurantMenuItem.getPrice(),
+          restaurantMenuItem.getPrice() * basketItem.getAmount(),
           restaurantMenuItem.getTitle()
       );
       menuItemViewModels.add(checkoutMenuItemViewModel);
@@ -100,7 +100,7 @@ public class DbToViewModelConverter {
     return checkoutViewModel;
   }
 
-  private static DbRestaurantMenuItem findMenuItemById(String id, Collection<DbRestaurantMenuItem> restaurantMenuItems){
+  private static DbRestaurantMenuItem findMenuItemById(String id, Collection<DbRestaurantMenuItem> restaurantMenuItems) {
     return Stream.of(restaurantMenuItems).filter(value -> id.equals(value.getId())).findFirst().get();
   }
 }

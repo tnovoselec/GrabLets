@@ -167,7 +167,7 @@ public class MainActivity extends BaseActivity
 
       @Override
       public void onError(Throwable e) {
-
+        e.printStackTrace();
       }
 
       @Override

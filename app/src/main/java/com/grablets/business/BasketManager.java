@@ -1,5 +1,6 @@
 package com.grablets.business;
 
+import com.annimon.stream.Stream;
 import com.grablets.repository.BasketDbRepository;
 import com.jakewharton.rxrelay.BehaviorRelay;
 
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class BasketManager {
@@ -21,6 +23,22 @@ public class BasketManager {
   @Inject
   public BasketManager(BasketDbRepository basketDbRepository) {
     this.basketDbRepository = basketDbRepository;
+    init();
+  }
+
+  private void init() {
+    basketDbRepository.getBasketItems()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .map(basketItems -> {
+          Map<String, Integer> basketEntries = new HashMap<>();
+          Stream.of(basketItems).forEach(value -> basketEntries.put(value.getMenuItemId(), value.getAmount()));
+          return basketEntries;
+        }).subscribe(result -> {
+      basketEntries.clear();
+      basketEntries.putAll(result);
+      relay.call(basketEntries);
+    });
   }
 
   public void basketEntryChanged(String menuItemId, int newAmount) {

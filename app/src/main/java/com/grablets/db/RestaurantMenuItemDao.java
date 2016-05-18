@@ -76,6 +76,7 @@ public class RestaurantMenuItemDao extends Dao {
           .restaurantId(restaurantMenuItem.getRestaurantId())
           .title(restaurantMenuItem.getTitle())
           .description(restaurantMenuItem.getDescription())
+          .price(restaurantMenuItem.getPrice())
           .imageUrl(restaurantMenuItem.getImageUrl())
           .build();
       db.insert(DbRestaurantMenuItem.TABLE_NAME, values, SQLiteDatabase.CONFLICT_REPLACE);
