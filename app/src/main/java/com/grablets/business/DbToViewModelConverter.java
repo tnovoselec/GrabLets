@@ -1,7 +1,11 @@
 package com.grablets.business;
 
+import com.annimon.stream.Stream;
+import com.grablets.db.model.DbBasketItem;
 import com.grablets.db.model.DbRestaurant;
 import com.grablets.db.model.DbRestaurantMenuItem;
+import com.grablets.viewmodel.CheckoutViewModel;
+import com.grablets.viewmodel.CheckoutViewModel.CheckoutMenuItemViewModel;
 import com.grablets.viewmodel.DailyMenuOverlayViewModel;
 import com.grablets.viewmodel.DailyMenuViewModel;
 import com.grablets.viewmodel.DailyMenuViewModel.MenuItemViewModel;
@@ -9,6 +13,7 @@ import com.grablets.viewmodel.RestaurantsViewModel;
 import com.grablets.viewmodel.RestaurantsViewModel.RestaurantViewModel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,5 +80,27 @@ public class DbToViewModelConverter {
 
 
     return new DailyMenuOverlayViewModel(data);
+  }
+
+  public static CheckoutViewModel fromBasketAndUserData(List<DbBasketItem> basketItems, List<DbRestaurantMenuItem> dbRestaurantMenuItems){
+
+    List<CheckoutMenuItemViewModel> menuItemViewModels = new ArrayList<>();
+    for (DbBasketItem basketItem : basketItems){
+      DbRestaurantMenuItem restaurantMenuItem = findMenuItemById(basketItem.getMenuItemId(), dbRestaurantMenuItems);
+      CheckoutMenuItemViewModel checkoutMenuItemViewModel = new CheckoutMenuItemViewModel(
+          basketItem.getAmount(),
+          basketItem.getMenuItemId(),
+          restaurantMenuItem.getPrice(),
+          restaurantMenuItem.getTitle()
+      );
+      menuItemViewModels.add(checkoutMenuItemViewModel);
+    }
+
+    CheckoutViewModel checkoutViewModel = new CheckoutViewModel(menuItemViewModels, null);
+    return checkoutViewModel;
+  }
+
+  private static DbRestaurantMenuItem findMenuItemById(String id, Collection<DbRestaurantMenuItem> restaurantMenuItems){
+    return Stream.of(restaurantMenuItems).filter(value -> id.equals(value.getId())).findFirst().get();
   }
 }

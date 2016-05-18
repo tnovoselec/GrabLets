@@ -29,6 +29,10 @@
   <string name="my_profile">Moj profil</string>
   <string name="update_user_data">Ažuriraj podatke</string>
   <string name="checkout_default_message">Košarica je prazna</string>
+  <string name="checkout">Narudžba</string>
+  <string name="ordering">Naručujem</string>
+  <string name="delivery">Dostava</string>
+  <string name="delivery_time">Vrijeme dostave</string>
 
   <plurals name="basket_item_number">
     <item quantity="one">%d jelo u košarici</item>

@@ -11,12 +11,12 @@ import java.util.List;
 import rx.Completable;
 import rx.Observable;
 
-public class RestaurantsRepository {
+public class RestaurantsDbRepository {
 
   private final RestaurantsDao restaurantsDao;
   private final RestaurantMenuItemDao restaurantMenuItemDao;
 
-  public RestaurantsRepository(RestaurantsDao restaurantsDao, RestaurantMenuItemDao restaurantMenuItemDao) {
+  public RestaurantsDbRepository(RestaurantsDao restaurantsDao, RestaurantMenuItemDao restaurantMenuItemDao) {
     this.restaurantsDao = restaurantsDao;
     this.restaurantMenuItemDao = restaurantMenuItemDao;
   }

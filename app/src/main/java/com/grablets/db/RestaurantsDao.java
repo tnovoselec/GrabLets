@@ -27,7 +27,8 @@ public class RestaurantsDao extends Dao {
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+    DROP_TABLE_IF_EXISTS(DbRestaurant.TABLE_NAME).execute(db);
+    createTable(db);
   }
 
   public Observable<List<DbRestaurant>> getRestaurants() {
@@ -44,7 +45,6 @@ public class RestaurantsDao extends Dao {
 
   public Completable insert(List<DbRestaurant> restaurants) {
     return Completable.fromAction(() -> insertRestaurants(restaurants));
-
   }
 
   private void insertRestaurants(List<DbRestaurant> restaurants) {

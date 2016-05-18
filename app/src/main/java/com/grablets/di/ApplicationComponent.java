@@ -15,10 +15,14 @@ import com.grablets.di.module.GrabLetsApiModule;
 import com.grablets.di.module.RepositoryModule;
 import com.grablets.di.module.UseCaseModule;
 import com.grablets.di.qualifier.ForApplication;
+import com.grablets.interactor.GetBasketUseCase;
+import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.receiver.AlarmReceiver;
 import com.grablets.receiver.BootBroadcastReceiver;
-import com.grablets.repository.RestaurantsRepository;
+import com.grablets.repository.BasketDbRepository;
+import com.grablets.repository.RestaurantDbMenuItemsRepository;
+import com.grablets.repository.RestaurantsDbRepository;
 import com.grablets.service.DailyMenuOverlayService;
 
 import javax.inject.Singleton;
@@ -63,9 +67,17 @@ public interface ApplicationComponent {
 
   GrabLetsClient getGrabLetsClient();
 
-  RestaurantsRepository getRestaurantsRepository();
+  RestaurantsDbRepository getRestaurantsRepository();
+
+  RestaurantDbMenuItemsRepository getRestaurantMenuItemsRepository();
+
+  BasketDbRepository getBasketDbRepository();
 
   GetRestaurantsUseCase getRestaurantsUseCase();
+
+  GetBasketUseCase getBasketUseCase();
+
+  GetRestaurantMenuItemsUseCase getRestaurantMenuItemsUseCase();
 
   void inject(GrabLetsApplication commerceApplication);
 

@@ -9,6 +9,7 @@ import com.grablets.business.BasketManager;
 import com.grablets.business.NotificationScheduler;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.qualifier.ForApplication;
+import com.grablets.repository.BasketDbRepository;
 
 import javax.inject.Singleton;
 
@@ -57,7 +58,7 @@ public class ApplicationModule {
 
   @Provides
   @Singleton
-  protected BasketManager basketManager(){
-    return new BasketManager();
+  protected BasketManager basketManager(BasketDbRepository basketDbRepository){
+    return new BasketManager(basketDbRepository);
   }
 }

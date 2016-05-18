@@ -27,6 +27,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Subscriber;
 
 public class MainActivity extends BaseActivity
@@ -152,6 +153,11 @@ public class MainActivity extends BaseActivity
     router.showSettingsActivity();
   }
 
+  @OnClick(R.id.basket_label)
+  public void onBasketClicked() {
+    router.showCheckoutActivity();
+  }
+
   private Subscriber<Map<String, Integer>> createBasketSubscriber() {
     return new Subscriber<Map<String, Integer>>() {
       @Override
@@ -167,8 +173,8 @@ public class MainActivity extends BaseActivity
       @Override
       public void onNext(Map<String, Integer> basketItems) {
         int itemsCount = 0;
-        for (int count : basketItems.values()){
-          itemsCount+= count;
+        for (int count : basketItems.values()) {
+          itemsCount += count;
         }
         basketLabel.setText(getResources().getQuantityString(R.plurals.basket_item_number, itemsCount, itemsCount));
       }

@@ -3,7 +3,7 @@ package com.grablets.interactor;
 import com.grablets.api.GrabLetsClient;
 import com.grablets.business.ApiToDbConverter;
 import com.grablets.db.model.DbRestaurant;
-import com.grablets.repository.RestaurantsRepository;
+import com.grablets.repository.RestaurantsDbRepository;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import rx.Observable;
 public class GetRestaurantsUseCase implements UseCase<List<DbRestaurant>> {
 
   private final GrabLetsClient grabLetsClient;
-  private final RestaurantsRepository restaurantsRepository;
+  private final RestaurantsDbRepository restaurantsDbRepository;
 
   @Inject
-  public GetRestaurantsUseCase(GrabLetsClient grabLetsClient, RestaurantsRepository restaurantsRepository) {
+  public GetRestaurantsUseCase(GrabLetsClient grabLetsClient, RestaurantsDbRepository restaurantsDbRepository) {
     this.grabLetsClient = grabLetsClient;
-    this.restaurantsRepository = restaurantsRepository;
+    this.restaurantsDbRepository = restaurantsDbRepository;
   }
 
   @Override
@@ -33,7 +33,7 @@ public class GetRestaurantsUseCase implements UseCase<List<DbRestaurant>> {
   }
 
   private Completable persistRestaurants(List<DbRestaurant> restaurants) {
-    return restaurantsRepository.deleteRestaurants().endWith(
-        restaurantsRepository.saveRestaurants(restaurants));
+    return restaurantsDbRepository.deleteRestaurants().endWith(
+        restaurantsDbRepository.saveRestaurants(restaurants));
   }
 }

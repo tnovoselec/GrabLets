@@ -2,6 +2,7 @@ package com.grablets;
 
 import android.content.Context;
 
+import com.grablets.activity.CheckoutActivity;
 import com.grablets.activity.MainActivity;
 import com.grablets.activity.RegistrationActivity;
 import com.grablets.activity.SettingsActivity;
@@ -28,5 +29,9 @@ public class Router {
 
   public void showSettingsActivity() {
     context.startActivity(SettingsActivity.createIntent(context));
+  }
+
+  public void showCheckoutActivity(){
+    context.startActivity(CheckoutActivity.createIntent(context));
   }
 }

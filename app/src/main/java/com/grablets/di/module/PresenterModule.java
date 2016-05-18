@@ -3,7 +3,10 @@ package com.grablets.di.module;
 import com.grablets.Router;
 import com.grablets.business.BasketManager;
 import com.grablets.di.scope.ActivityScope;
+import com.grablets.interactor.GetBasketUseCase;
+import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
+import com.grablets.mvp.presenter.CheckoutPresenter;
 import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.mvp.presenter.LoginPresenter;
@@ -44,5 +47,11 @@ public class PresenterModule {
   @ActivityScope
   RegistrationPresenter registrationPresenter(Router router){
     return new RegistrationPresenter(router);
+  }
+
+  @Provides
+  @ActivityScope
+  CheckoutPresenter checkoutPresenter(GetBasketUseCase getBasketUseCase, GetRestaurantMenuItemsUseCase getRestaurantMenuItemsUseCase){
+    return new CheckoutPresenter(getBasketUseCase, getRestaurantMenuItemsUseCase);
   }
 }

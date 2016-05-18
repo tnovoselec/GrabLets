@@ -32,7 +32,7 @@ public class DailyMenuOverlayPresenter extends SubscribingPresenter<DailyMenuOve
   }
 
   private void onDailyMenuPulled(DailyMenuOverlayViewModel dailyMenuOverlayViewModel) {
-    if (getView() != null) {
+    if (isViewAttached()) {
       getView().renderDailyMenu(dailyMenuOverlayViewModel);
     }
   }

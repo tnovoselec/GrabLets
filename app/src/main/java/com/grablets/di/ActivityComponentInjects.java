@@ -1,9 +1,11 @@
 package com.grablets.di;
 
+import com.grablets.activity.CheckoutActivity;
 import com.grablets.activity.LoginActivity;
 import com.grablets.activity.MainActivity;
 import com.grablets.activity.RegistrationActivity;
 import com.grablets.activity.SettingsActivity;
+import com.grablets.fragment.CheckoutFragment;
 import com.grablets.fragment.DailyMenuFragment;
 import com.grablets.fragment.LoginFragment;
 import com.grablets.fragment.RegistrationFragment;
@@ -29,4 +31,8 @@ public interface ActivityComponentInjects {
   void inject(SettingsActivity settingsActivity);
 
   void inject(SettingsFragment settingsFragment);
+
+  void inject(CheckoutActivity checkoutActivity);
+
+  void inject(CheckoutFragment checkoutFragment);
 }
