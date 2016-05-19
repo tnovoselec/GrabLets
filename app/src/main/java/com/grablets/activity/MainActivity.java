@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.grablets.R;
 import com.grablets.Router;
+import com.grablets.api.FirebaseAuthClient;
 import com.grablets.business.BasketManager;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
@@ -47,6 +48,8 @@ public class MainActivity extends BaseActivity
 
   @Inject
   BasketManager basketManager;
+  @Inject
+  FirebaseAuthClient firebaseAuthClient;
 
   @Inject
   Router router;
@@ -124,10 +127,18 @@ public class MainActivity extends BaseActivity
       preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_RESTAURANTS.itemId);
     } else if (id == R.id.nav_settings) {
       showSettings();
+    } else if (id == R.id.nav_logout) {
+      logout();
     }
 
     drawer.closeDrawer(GravityCompat.START);
     return true;
+  }
+
+  private void logout() {
+    firebaseAuthClient.logout();
+    preferenceAccessor.setUserLoggedIn(false);
+    router.showLoginActivity();
   }
 
   private void showDailyMenu() {

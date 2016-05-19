@@ -1,6 +1,7 @@
 package com.grablets.di.module;
 
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.grablets.Router;
@@ -28,6 +29,11 @@ public class ActivityModule {
   @Provides
   @ForActivity
   Context context(){
+    return activity;
+  }
+
+  @Provides
+  Activity activity(){
     return activity;
   }
 }

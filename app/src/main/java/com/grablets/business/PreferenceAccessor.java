@@ -9,6 +9,7 @@ public class PreferenceAccessor {
   private static final String ACTIVE_MENU_ITEM = "active_menu_item";
   private static final String NOTIFICATIONS_ENABLED = "notifications_enabled";
   private static final String NOTIFICATIONS_TIME = "notifications_time";
+  private static final String USER_LOGGED_IN = "user_logged_in";
 
   private final SharedPreferences sharedPreferences;
 
@@ -41,6 +42,13 @@ public class PreferenceAccessor {
     return getLong(NOTIFICATIONS_TIME);
   }
 
+  public void setUserLoggedIn(boolean isLoggedIn){
+    set(USER_LOGGED_IN, isLoggedIn);
+  }
+
+  public boolean isUserLoggedIn(){
+    return getBoolean(USER_LOGGED_IN);
+  }
   // Helper methods
 
   private boolean getBoolean(String key) {

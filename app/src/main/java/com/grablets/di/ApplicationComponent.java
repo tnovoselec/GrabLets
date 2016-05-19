@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.grablets.GrabLetsApplication;
+import com.grablets.api.FirebaseAuthClient;
 import com.grablets.api.GrabLetsClient;
 import com.grablets.business.BasketManager;
 import com.grablets.business.NotificationScheduler;
@@ -66,6 +67,8 @@ public interface ApplicationComponent {
   BasketManager getBasketManager();
 
   GrabLetsClient getGrabLetsClient();
+
+  FirebaseAuthClient firebaseAuthClient();
 
   RestaurantsDbRepository getRestaurantsRepository();
 

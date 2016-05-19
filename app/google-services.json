@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "498285001784",
+    "firebase_url": "https://sodium-replica-131608.firebaseio.com",
+    "project_id": "sodium-replica-131608",
+    "storage_bucket": "sodium-replica-131608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498285001784:android:039a15297428d6ab",
+        "android_client_info": {
+          "package_name": "com.grablets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498285001784-ki6crbniaa54qd45iu4cfemhf4l3s9tc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDduL0uyQLOQJvaLkdVZt-EUNBSIe51qSU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

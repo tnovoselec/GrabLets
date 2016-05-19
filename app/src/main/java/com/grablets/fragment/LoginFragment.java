@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.grablets.R;
 import com.grablets.di.ActivityComponent;
@@ -66,12 +67,12 @@ public class LoginFragment extends BaseFragment implements LoginMvp.View {
   }
 
   @OnClick(R.id.register)
-  public void onRegistrationClicked(){
+  public void onRegistrationClicked() {
     loginPresenter.onRegistrationClicked();
   }
 
   @Override
   public void showErrorMessage(int errorMessageId) {
-
+    Toast.makeText(getContext(), errorMessageId, Toast.LENGTH_LONG).show();
   }
 }

@@ -1,7 +1,9 @@
 package com.grablets.di.module;
 
 import com.grablets.Router;
+import com.grablets.api.FirebaseAuthClient;
 import com.grablets.business.BasketManager;
+import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.scope.ActivityScope;
 import com.grablets.interactor.GetBasketUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
@@ -39,8 +41,8 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  LoginPresenter loginPresenter(Router router){
-    return new LoginPresenter(router);
+  LoginPresenter loginPresenter(Router router, FirebaseAuthClient firebaseAuthClient, PreferenceAccessor preferenceAccessor){
+    return new LoginPresenter(router, firebaseAuthClient, preferenceAccessor);
   }
 
   @Provides

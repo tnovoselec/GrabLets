@@ -3,6 +3,7 @@ package com.grablets.di.module;
 import android.app.Application;
 
 import com.grablets.BuildConfig;
+import com.grablets.api.FirebaseAuthClient;
 import com.grablets.api.GrabLetsApi;
 import com.grablets.api.GrabLetsClient;
 import com.squareup.okhttp.OkHttpClient;
@@ -51,7 +52,14 @@ public class GrabLetsApiModule {
   }
 
   @Provides
+  @Singleton
   GrabLetsClient provideGrabLetsClient(GrabLetsApi grabLetsApi){
     return new GrabLetsClient(grabLetsApi);
+  }
+
+  @Provides
+  @Singleton
+  FirebaseAuthClient provideFirebaseAuthClient(){
+    return new FirebaseAuthClient();
   }
 }
