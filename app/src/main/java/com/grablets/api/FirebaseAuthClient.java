@@ -47,6 +47,23 @@ public class FirebaseAuthClient {
         });
   }
 
+  public void registerUser(String email, String password) {
+
+    if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+      firebaseUserPublishRelay.call(null);
+      return;
+    }
+
+    firebaseAuth.createUserWithEmailAndPassword(email, password)
+    .addOnCompleteListener(task -> {
+      if (!task.isSuccessful()) {
+        firebaseUserPublishRelay.call(null);
+      } else {
+        firebaseUserPublishRelay.call(firebaseAuth);
+      }
+    });
+  }
+
   public void logout() {
     firebaseAuth.signOut();
   }

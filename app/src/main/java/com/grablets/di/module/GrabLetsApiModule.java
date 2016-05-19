@@ -20,7 +20,7 @@ import retrofit.client.OkClient;
 @Module
 public class GrabLetsApiModule {
 
-  private static final String BASE_URL = "http://private-a7425-grablets.apiary-mock.com/";
+  private static final String BASE_URL = "https://sodium-replica-131608.firebaseio.com/";
 
   @Provides
   @Singleton

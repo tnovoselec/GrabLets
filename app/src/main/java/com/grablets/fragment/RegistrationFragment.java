@@ -26,6 +26,10 @@ public class RegistrationFragment extends BaseFragment implements RegistrationMv
 
   public static final String TAG = RegistrationFragment.class.getSimpleName();
 
+  @BindView(R.id.user_email_label)
+  EditText userEmailLabel;
+  @BindView(R.id.user_password_label)
+  EditText userPasswordLabel;
   @BindView(R.id.user_first_name_label)
   EditText userFirstNameLabel;
   @BindView(R.id.user_last_name_label)
@@ -74,6 +78,8 @@ public class RegistrationFragment extends BaseFragment implements RegistrationMv
   @OnClick(R.id.user_register)
   public void onRegisterClicked() {
     registrationPresenter.register(
+        userEmailLabel.getText().toString(),
+        userPasswordLabel.getText().toString(),
         userFirstNameLabel.getText().toString(),
         userLastNameLabel.getText().toString(),
         userPhoneLabel.getText().toString(),

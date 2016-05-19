@@ -15,7 +15,7 @@ public class RegistrationPresenter extends SubscribingPresenter<RegistrationMvp.
   }
 
   @Override
-  public void register(String firstName, String lastName, String phone, String address, String additionalInfo) {
+  public void register(String email, String password, String firstName, String lastName, String phone, String address, String additionalInfo) {
     router.showMainActivity();
   }
 }

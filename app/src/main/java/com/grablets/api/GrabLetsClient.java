@@ -15,6 +15,6 @@ public class GrabLetsClient {
   }
 
   public Observable<List<ApiRestaurant>> getRestaurants() {
-    return grabLetsApi.getRestaurants().map(response -> response.restaurants);
+    return grabLetsApi.getRestaurants();
   }
 }

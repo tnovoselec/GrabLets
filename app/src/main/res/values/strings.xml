@@ -35,6 +35,8 @@
   <string name="delivery_time">Vrijeme dostave</string>
   <string name="login_error_message">Greška prilikom prijave. Molimo provjerite podatke i pokušajte ponovno.</string>
   <string name="logout">Odjava</string>
+  <string name="user_email">Email adresa</string>
+  <string name="user_password">Lozinka</string>
 
   <plurals name="basket_item_number">
     <item quantity="one">%d jelo u košarici</item>

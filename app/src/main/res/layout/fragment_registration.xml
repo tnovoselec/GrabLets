@@ -16,6 +16,30 @@
       style="@style/RegistrationTextAppearanceSmall"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:text="@string/user_email"/>
+    <EditText
+      android:id="@+id/user_email_label"
+      style="@style/RegistrationTextAppearance"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:singleLine="true"/>
+
+    <TextView
+      style="@style/RegistrationTextAppearanceSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/user_password"/>
+    <EditText
+      android:id="@+id/user_password_label"
+      style="@style/RegistrationTextAppearance"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:singleLine="true"/>
+
+    <TextView
+      style="@style/RegistrationTextAppearanceSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:text="@string/user_first_name"/>
     <EditText
       android:id="@+id/user_first_name_label"
