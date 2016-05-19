@@ -41,11 +41,13 @@ public class FirebaseAuthClient {
         .addOnCompleteListener((task) -> {
           if (!task.isSuccessful()) {
             firebaseUserPublishRelay.call(null);
+          } else {
+            firebaseUserPublishRelay.call(firebaseAuth);
           }
         });
   }
 
-  public void logout(){
+  public void logout() {
     firebaseAuth.signOut();
   }
 
@@ -57,7 +59,13 @@ public class FirebaseAuthClient {
 
     @Override
     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-      firebaseUserPublishRelay.call(firebaseAuth);
+//      if (firebaseAuth.getCurrentUser() == null) {
+//        Log.e("FirebaseAuthStateL", "user null");
+//
+//      } else {
+//        Log.e("FirebaseAuthStateL", firebaseAuth.getCurrentUser().toString());
+//      }
+//      firebaseUserPublishRelay.call(firebaseAuth);
     }
   }
 }

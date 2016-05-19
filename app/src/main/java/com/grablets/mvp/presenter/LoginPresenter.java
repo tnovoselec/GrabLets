@@ -11,17 +11,21 @@ import com.grablets.mvp.LoginMvp;
 
 import javax.inject.Inject;
 
+import rx.functions.Action1;
+
 public class LoginPresenter extends SubscribingPresenter<LoginMvp.View> implements LoginMvp.Presenter {
 
   private final Router router;
   private final FirebaseAuthClient firebaseAuthClient;
   private final PreferenceAccessor preferenceAccessor;
+  private final AuthHandler authHandler;
 
   @Inject
   public LoginPresenter(Router router, FirebaseAuthClient firebaseAuthClient, PreferenceAccessor preferenceAccessor) {
     this.router = router;
     this.firebaseAuthClient = firebaseAuthClient;
     this.preferenceAccessor = preferenceAccessor;
+    this.authHandler = new AuthHandler();
   }
 
   @Override
@@ -38,7 +42,7 @@ public class LoginPresenter extends SubscribingPresenter<LoginMvp.View> implemen
 
   @Override
   public void onLoginClicked(String email, String password) {
-    firebaseAuthClient.getFirebaseAuth().subscribe(this::onFirebaseAuthResult);
+    firebaseAuthClient.getFirebaseAuth().subscribe(authHandler);
     firebaseAuthClient.loginUser(email, password);
   }
 
@@ -65,6 +69,14 @@ public class LoginPresenter extends SubscribingPresenter<LoginMvp.View> implemen
       if (isViewAttached()) {
         getView().showErrorMessage(R.string.login_error_message);
       }
+    }
+  }
+
+  private class AuthHandler implements Action1<FirebaseAuth>{
+
+    @Override
+    public void call(FirebaseAuth firebaseAuth) {
+      onFirebaseAuthResult(firebaseAuth);
     }
   }
 }
