@@ -33,6 +33,8 @@
   <string name="ordering">Naručujem</string>
   <string name="delivery">Dostava</string>
   <string name="delivery_time">Vrijeme dostave</string>
+  <string name="confirm_order">Naručujem</string>
+  <string name="order_successful">Narudžba uspješno kreirana</string>
 
   <plurals name="basket_item_number">
     <item quantity="one">%d jelo u košarici</item>

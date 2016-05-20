@@ -2,11 +2,13 @@ package com.grablets.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.grablets.R;
 import com.grablets.di.ActivityComponent;
@@ -16,9 +18,13 @@ import com.grablets.mvp.presenter.CheckoutPresenter;
 import com.grablets.viewmodel.CheckoutViewModel;
 import com.grablets.viewmodel.CheckoutViewModel.CheckoutMenuItemViewModel;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
 
@@ -67,11 +73,17 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
   @Override
   public void renderCheckoutData(CheckoutViewModel checkoutViewModel) {
     fillContainer(checkoutViewModel);
+    fillUserData(checkoutViewModel);
+  }
+
+  @Override
+  public void showOrderSuccessfulMessage(@StringRes int messageId) {
+    Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();
   }
 
   @Override
   public void showErrorMessage(int errorMessageId) {
-
+    Toast.makeText(getContext(), errorMessageId, Toast.LENGTH_SHORT).show();
   }
 
   private void fillContainer(CheckoutViewModel checkoutViewModel) {
@@ -85,5 +97,17 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
       price.setText(String.valueOf(checkoutMenuItemViewModel.price));
       checkoutMenuContainer.addView(itemView);
     }
+  }
+
+  private void fillUserData(CheckoutViewModel checkoutViewModel) {
+    checkoutDeliveryAddress.setText(checkoutViewModel.userDataViewModel.deliveryAddress);
+    checkoutDeliveryTime.setText(checkoutViewModel.userDataViewModel.deliveryTime);
+  }
+
+  @OnClick(R.id.checkout_confirm_order)
+  public void onConfirmOrderClicked() {
+    String deliveryAddress = checkoutDeliveryAddress.getText().toString();
+    Date deliveryTime = Calendar.getInstance().getTime();//checkoutDeliveryTime.getText().toString();
+    checkoutPresenter.onConfirmOrderClicked(deliveryAddress, deliveryTime);
   }
 }

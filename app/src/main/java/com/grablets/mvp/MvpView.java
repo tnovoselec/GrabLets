@@ -1,6 +1,8 @@
 package com.grablets.mvp;
 
+import android.support.annotation.StringRes;
+
 public interface MvpView {
 
-  void showErrorMessage(int errorMessageId);
+  void showErrorMessage(@StringRes int errorMessageId);
 }

@@ -1,6 +1,7 @@
 package com.grablets.di;
 
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.grablets.Router;
@@ -40,6 +41,8 @@ public interface ActivityComponent extends ApplicationComponent, ActivityCompone
   }
   @ForActivity
   Context provideActivityContext();
+
+  Activity provideActivity();
 
   Router router();
 }

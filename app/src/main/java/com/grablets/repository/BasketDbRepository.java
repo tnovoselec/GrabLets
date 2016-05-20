@@ -27,4 +27,8 @@ public class BasketDbRepository {
   public Completable deleteBasketItem(String menuItemId){
     return basketItemDao.deleteBasketItem(menuItemId);
   }
+
+  public Completable clearBasketItems(){
+    return basketItemDao.clearBasketItems();
+  }
 }

@@ -15,6 +15,8 @@ import com.grablets.di.module.GrabLetsApiModule;
 import com.grablets.di.module.RepositoryModule;
 import com.grablets.di.module.UseCaseModule;
 import com.grablets.di.qualifier.ForApplication;
+import com.grablets.interactor.ClearBasketUseCase;
+import com.grablets.interactor.CreateOrderUseCase;
 import com.grablets.interactor.GetBasketUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
@@ -78,6 +80,11 @@ public interface ApplicationComponent {
   GetBasketUseCase getBasketUseCase();
 
   GetRestaurantMenuItemsUseCase getRestaurantMenuItemsUseCase();
+
+  CreateOrderUseCase getCreateOrderUseCase();
+
+
+  ClearBasketUseCase getClearBasketUseCase();
 
   void inject(GrabLetsApplication commerceApplication);
 

@@ -49,4 +49,8 @@ public class BasketItemDao extends Dao {
   public Completable deleteBasketItem(String menuItemId) {
     return delete(DbBasketItem.TABLE_NAME, DbBasketItem.COL_MENU_ITEM_ID + "= ?", menuItemId).toCompletable();
   }
+
+  public Completable clearBasketItems() {
+    return delete(DbBasketItem.TABLE_NAME, null).toCompletable();
+  }
 }

@@ -9,9 +9,7 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_default">
     <TextView
-      style="@style/TextAppearance.AppCompat.Medium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      style="@style/CheckoutTitle"
       android:text="@string/ordering"/>
     <LinearLayout
       android:id="@+id/checkout_menu_container"
@@ -21,31 +19,33 @@
       android:orientation="vertical">
     </LinearLayout>
     <TextView
-      style="@style/TextAppearance.AppCompat.Medium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      style="@style/CheckoutTitle"
       android:layout_marginTop="@dimen/padding_default"
       android:text="@string/delivery"/>
     <EditText
       android:id="@+id/checkout_delivery_address"
-      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/padding_default"
-      android:layout_marginTop="@dimen/padding_default"/>
+      android:layout_marginTop="@dimen/padding_default"
+      android:theme="@style/CheckoutInput"/>
     <TextView
-      style="@style/TextAppearance.AppCompat.Medium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      style="@style/CheckoutTitle"
       android:layout_marginTop="@dimen/padding_default"
       android:text="@string/delivery_time"/>
     <EditText
       android:id="@+id/checkout_delivery_time"
-      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/padding_default"
-      android:layout_marginRight="@dimen/padding_default"
-      android:layout_marginTop="@dimen/padding_default"/>
+      android:layout_marginTop="@dimen/padding_default"
+      android:theme="@style/CheckoutInput"/>
+    <Button
+      android:id="@+id/checkout_confirm_order"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/padding_default"
+      android:padding="@dimen/padding_default"
+      android:text="@string/confirm_order"/>
   </LinearLayout>
 </ScrollView>

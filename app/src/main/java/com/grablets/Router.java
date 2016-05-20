@@ -1,21 +1,20 @@
 package com.grablets;
 
-import android.content.Context;
+import android.app.Activity;
 
 import com.grablets.activity.CheckoutActivity;
 import com.grablets.activity.MainActivity;
 import com.grablets.activity.RegistrationActivity;
 import com.grablets.activity.SettingsActivity;
-import com.grablets.di.qualifier.ForActivity;
 
 import javax.inject.Inject;
 
 public class Router {
 
-  private final Context context;
+  private final Activity context;
 
   @Inject
-  public Router(@ForActivity Context context) {
+  public Router(Activity context) {
     this.context = context;
   }
 
@@ -31,7 +30,11 @@ public class Router {
     context.startActivity(SettingsActivity.createIntent(context));
   }
 
-  public void showCheckoutActivity(){
+  public void showCheckoutActivity() {
     context.startActivity(CheckoutActivity.createIntent(context));
+  }
+
+  public void finishCurrentActivity() {
+    context.finish();
   }
 }

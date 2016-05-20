@@ -1,6 +1,8 @@
 package com.grablets.di.module;
 
 import com.grablets.api.GrabLetsClient;
+import com.grablets.interactor.ClearBasketUseCase;
+import com.grablets.interactor.CreateOrderUseCase;
 import com.grablets.interactor.GetBasketUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
@@ -27,5 +29,15 @@ public class UseCaseModule {
   @Provides
   GetRestaurantMenuItemsUseCase provideGetRestaurantMenuItemsUseCase(RestaurantDbMenuItemsRepository restaurantDbMenuItemsRepository) {
     return new GetRestaurantMenuItemsUseCase(restaurantDbMenuItemsRepository);
+  }
+
+  @Provides
+  ClearBasketUseCase provideClearBasketUseCase(BasketDbRepository basketDbRepository){
+    return new ClearBasketUseCase(basketDbRepository);
+  }
+
+  @Provides
+  CreateOrderUseCase provideCreateOrderUseCase(){
+    return new CreateOrderUseCase();
   }
 }
