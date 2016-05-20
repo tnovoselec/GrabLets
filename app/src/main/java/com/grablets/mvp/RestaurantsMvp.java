@@ -6,6 +6,8 @@ public class RestaurantsMvp {
 
   public interface Presenter {
     void getRestaurants();
+
+    void onRestaurantClicked(String restaurantId, String restaurantName);
   }
 
   public interface View extends MvpView {

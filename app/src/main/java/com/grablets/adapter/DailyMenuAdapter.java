@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.grablets.R;
 import com.grablets.ui.IncrementerView;
-import com.grablets.viewmodel.DailyMenuViewModel;
+import com.grablets.viewmodel.MenuItemViewModel;
 
 import java.util.List;
 import java.util.Map;
@@ -24,11 +24,11 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
     void onAmountChanged(String menuItemId, int newAmount);
   }
 
-  private final List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels;
+  private final List<MenuItemViewModel> menuItemViewModels;
   private final MenuItemAmountListener menuItemAmountListener;
   private final Map<String, Integer> basketItems;
 
-  public DailyMenuAdapter(List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels, MenuItemAmountListener menuItemAmountListener, Map<String, Integer> basketItems) {
+  public DailyMenuAdapter(List<MenuItemViewModel> menuItemViewModels, MenuItemAmountListener menuItemAmountListener, Map<String, Integer> basketItems) {
     this.menuItemViewModels = menuItemViewModels;
     this.menuItemAmountListener = menuItemAmountListener;
     this.basketItems = basketItems;
@@ -61,14 +61,14 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
     @BindView(R.id.item_menu_incrementer)
     IncrementerView itemIncrementer;
 
-    private DailyMenuViewModel.MenuItemViewModel menuItemViewModel;
+    private MenuItemViewModel menuItemViewModel;
 
     public DailyMenuViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
     }
 
-    void fillView(DailyMenuViewModel.MenuItemViewModel menuItemViewModel) {
+    void fillView(MenuItemViewModel menuItemViewModel) {
       this.menuItemViewModel = menuItemViewModel;
       Glide.with(itemImage.getContext())
           .load(menuItemViewModel.imageUrl)

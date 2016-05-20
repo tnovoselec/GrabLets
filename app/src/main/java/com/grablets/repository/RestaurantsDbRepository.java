@@ -25,6 +25,10 @@ public class RestaurantsDbRepository {
     return restaurantsDao.getRestaurants();
   }
 
+  public Observable<List<DbRestaurant>> getRestaurantsById(String restaurantId) {
+    return restaurantsDao.getRestaurants();
+  }
+
   public Completable saveRestaurants(List<DbRestaurant> restaurants) {
     List<DbRestaurantMenuItem> restaurantMenuItems = new ArrayList<>();
     for (DbRestaurant dbRestaurant : restaurants) {

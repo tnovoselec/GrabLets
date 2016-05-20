@@ -42,6 +42,11 @@
       android:theme="@style/AppTheme.NoActionBar"
       android:windowSoftInputMode="stateHidden">
     </activity>
+    <activity
+      android:name=".activity.RestaurantMenuActivity"
+      android:theme="@style/AppTheme.NoActionBar"
+      android:windowSoftInputMode="stateHidden">
+    </activity>
 
     <receiver android:name=".receiver.BootBroadcastReceiver"
               android:enabled="false">

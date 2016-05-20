@@ -11,11 +11,13 @@ public class RestaurantsViewModel {
   }
 
   public static class RestaurantViewModel {
+    public final String id;
     public final String title;
     public final String description;
     public final String imageUrl;
 
-    public RestaurantViewModel(String title, String description, String imageUrl) {
+    public RestaurantViewModel(String id, String title, String description, String imageUrl) {
+      this.id = id;
       this.description = description;
       this.title = title;
       this.imageUrl = imageUrl;

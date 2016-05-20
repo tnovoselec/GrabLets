@@ -1,5 +1,6 @@
 package com.grablets.mvp.presenter;
 
+import com.grablets.Router;
 import com.grablets.business.DbToViewModelConverter;
 import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.mvp.RestaurantsMvp;
@@ -14,10 +15,12 @@ import rx.schedulers.Schedulers;
 public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.View> implements RestaurantsMvp.Presenter {
 
  private final GetRestaurantsUseCase getRestaurantsUseCase;
+  private final Router router;
 
   @Inject
-  public RestaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase) {
+  public RestaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router) {
     this.getRestaurantsUseCase = getRestaurantsUseCase;
+    this.router = router;
   }
 
   @Override
@@ -29,6 +32,11 @@ public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.Vi
         .subscribe(
             this::onRestaurantsPulled,
             this::onRestaurantsPullingFailed);
+  }
+
+  @Override
+  public void onRestaurantClicked(String restaurantId, String restaurantName) {
+    router.startRestaurantMenuActivity(restaurantId, restaurantName);
   }
 
   private void onRestaurantsPulled(RestaurantsViewModel restaurantsViewModel) {

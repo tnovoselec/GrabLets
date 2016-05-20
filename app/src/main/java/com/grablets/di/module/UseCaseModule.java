@@ -4,6 +4,7 @@ import com.grablets.api.GrabLetsClient;
 import com.grablets.interactor.ClearBasketUseCase;
 import com.grablets.interactor.CreateOrderUseCase;
 import com.grablets.interactor.GetBasketUseCase;
+import com.grablets.interactor.GetRestaurantMenuItemsByIdUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.repository.BasketDbRepository;
@@ -39,5 +40,10 @@ public class UseCaseModule {
   @Provides
   CreateOrderUseCase provideCreateOrderUseCase(){
     return new CreateOrderUseCase();
+  }
+
+  @Provides
+  GetRestaurantMenuItemsByIdUseCase provideGetRestaurantMenuItemsByIdUseCase(RestaurantDbMenuItemsRepository restaurantDbMenuItemsRepository){
+    return new GetRestaurantMenuItemsByIdUseCase(restaurantDbMenuItemsRepository);
   }
 }

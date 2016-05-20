@@ -20,7 +20,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.View {
+
+public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.View, RestaurantsAdapter.RestaurantClickListener {
 
   public static final String TAG = RestaurantsFragment.class.getSimpleName();
 
@@ -62,7 +63,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
 
   @Override
   public void renderRestaurants(RestaurantsViewModel restaurantsViewModel) {
-    restaurantsAdapter = new RestaurantsAdapter(restaurantsViewModel.restaurantViewModels);
+    restaurantsAdapter = new RestaurantsAdapter(restaurantsViewModel.restaurantViewModels, this);
     restaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     restaurantsRecyclerView.setAdapter(restaurantsAdapter);
   }
@@ -72,4 +73,8 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
 
   }
 
+  @Override
+  public void onRestaurantClicked(RestaurantsViewModel.RestaurantViewModel restaurantViewModel) {
+    restaurantsPresenter.onRestaurantClicked(restaurantViewModel.id, restaurantViewModel.title);
+  }
 }

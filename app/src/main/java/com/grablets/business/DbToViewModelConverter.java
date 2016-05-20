@@ -8,7 +8,8 @@ import com.grablets.viewmodel.CheckoutViewModel;
 import com.grablets.viewmodel.CheckoutViewModel.CheckoutMenuItemViewModel;
 import com.grablets.viewmodel.DailyMenuOverlayViewModel;
 import com.grablets.viewmodel.DailyMenuViewModel;
-import com.grablets.viewmodel.DailyMenuViewModel.MenuItemViewModel;
+import com.grablets.viewmodel.MenuItemViewModel;
+import com.grablets.viewmodel.RestaurantMenuViewModel;
 import com.grablets.viewmodel.RestaurantsViewModel;
 import com.grablets.viewmodel.RestaurantsViewModel.RestaurantViewModel;
 
@@ -25,6 +26,7 @@ public class DbToViewModelConverter {
 
     for (DbRestaurant dbRestaurant : dbRestaurants) {
       RestaurantViewModel restaurantViewModel = new RestaurantViewModel(
+          dbRestaurant.getId(),
           dbRestaurant.getTitle(),
           dbRestaurant.getDescription(),
           dbRestaurant.getImageUrl()
@@ -98,6 +100,12 @@ public class DbToViewModelConverter {
 
     CheckoutViewModel checkoutViewModel = new CheckoutViewModel(menuItemViewModels, null);
     return checkoutViewModel;
+  }
+
+  public static RestaurantMenuViewModel fromMenuItems(List<DbRestaurantMenuItem> restaurantMenuItems, Map<String, Integer> basketEntries) {
+    List<MenuItemViewModel> menuItemViewModels = new ArrayList<>();
+      menuItemViewModels.addAll(fromMenuItems(restaurantMenuItems));
+    return new RestaurantMenuViewModel(menuItemViewModels, basketEntries);
   }
 
   private static DbRestaurantMenuItem findMenuItemById(String id, Collection<DbRestaurantMenuItem> restaurantMenuItems) {

@@ -18,10 +18,16 @@ import butterknife.ButterKnife;
 
 public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder> {
 
-  private final List<RestaurantsViewModel.RestaurantViewModel> restaurantViewModels;
+  public interface RestaurantClickListener {
+    void onRestaurantClicked(RestaurantsViewModel.RestaurantViewModel restaurantViewModel);
+  }
 
-  public RestaurantsAdapter(List<RestaurantsViewModel.RestaurantViewModel> restaurantViewModels) {
+  private final List<RestaurantsViewModel.RestaurantViewModel> restaurantViewModels;
+  private final RestaurantClickListener restaurantClickListener;
+
+  public RestaurantsAdapter(List<RestaurantsViewModel.RestaurantViewModel> restaurantViewModels, RestaurantClickListener restaurantClickListener) {
     this.restaurantViewModels = restaurantViewModels;
+    this.restaurantClickListener = restaurantClickListener;
   }
 
   @Override
@@ -61,6 +67,9 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
           .into(itemRestaurantImage);
       itemRestaurantTitle.setText(restaurantViewModel.title);
       itemRestaurantDescription.setText(restaurantViewModel.description);
+      itemView.setOnClickListener((view) -> restaurantClickListener.onRestaurantClicked(restaurantViewModel));
     }
+
+
   }
 }

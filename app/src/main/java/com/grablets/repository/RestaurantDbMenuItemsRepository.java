@@ -19,4 +19,8 @@ public class RestaurantDbMenuItemsRepository {
   public Observable<List<DbRestaurantMenuItem>> getMenuItemsByIds(Set<String> ids){
     return restaurantMenuItemDao.getMenuItemsByIds(ids);
   }
+
+  public Observable<List<DbRestaurantMenuItem>> getMenuItemsByRestaurantId(String restaurantId){
+    return restaurantMenuItemDao.getMenuItemsByRestaurantId(restaurantId);
+  }
 }

@@ -1,7 +1,7 @@
 package com.grablets.mock;
 
 import com.grablets.viewmodel.DailyMenuViewModel;
-import com.grablets.viewmodel.DailyMenuViewModel.MenuItemViewModel;
+import com.grablets.viewmodel.MenuItemViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

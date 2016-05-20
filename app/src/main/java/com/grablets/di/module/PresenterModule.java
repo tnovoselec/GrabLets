@@ -6,6 +6,7 @@ import com.grablets.di.scope.ActivityScope;
 import com.grablets.interactor.ClearBasketUseCase;
 import com.grablets.interactor.CreateOrderUseCase;
 import com.grablets.interactor.GetBasketUseCase;
+import com.grablets.interactor.GetRestaurantMenuItemsByIdUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.mvp.presenter.CheckoutPresenter;
@@ -13,6 +14,7 @@ import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.mvp.presenter.LoginPresenter;
 import com.grablets.mvp.presenter.RegistrationPresenter;
+import com.grablets.mvp.presenter.RestaurantMenuPresenter;
 import com.grablets.mvp.presenter.RestaurantsPresenter;
 
 import dagger.Module;
@@ -29,8 +31,8 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase){
-    return new RestaurantsPresenter(getRestaurantsUseCase);
+  RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router){
+    return new RestaurantsPresenter(getRestaurantsUseCase, router);
   }
 
   @Provides
@@ -59,5 +61,11 @@ public class PresenterModule {
                                       CreateOrderUseCase createOrderUseCase,
                                       Router router){
     return new CheckoutPresenter(getBasketUseCase, getRestaurantMenuItemsUseCase, clearBasketUseCase, createOrderUseCase, router);
+  }
+
+  @Provides
+  @ActivityScope
+  RestaurantMenuPresenter restaurantMenuPresenter(GetRestaurantMenuItemsByIdUseCase getRestaurantMenuItemsByIdUseCase, BasketManager basketManager){
+    return new RestaurantMenuPresenter(getRestaurantMenuItemsByIdUseCase, basketManager);
   }
 }

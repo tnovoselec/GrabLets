@@ -34,7 +34,7 @@ public class RestaurantMenuItemDao extends Dao {
     createTable(db);
   }
 
-  public Observable<List<DbRestaurantMenuItem>> getMenuItemsForRestaurant(String restaurantId) {
+  public Observable<List<DbRestaurantMenuItem>> getMenuItemsByRestaurantId(String restaurantId) {
     return query(
         SELECT(
             DbRestaurantMenuItem.COL_ID,
