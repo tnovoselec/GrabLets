@@ -12,7 +12,6 @@ import com.grablets.R;
 import com.grablets.ui.IncrementerView;
 import com.grablets.viewmodel.DailyMenuViewModel;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,11 +26,12 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
 
   private final List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels;
   private final MenuItemAmountListener menuItemAmountListener;
-  private final Map<String, Integer> basketItems = new HashMap<>();
+  private final Map<String, Integer> basketItems;
 
-  public DailyMenuAdapter(List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels, MenuItemAmountListener menuItemAmountListener) {
+  public DailyMenuAdapter(List<DailyMenuViewModel.MenuItemViewModel> menuItemViewModels, MenuItemAmountListener menuItemAmountListener, Map<String, Integer> basketItems) {
     this.menuItemViewModels = menuItemViewModels;
     this.menuItemAmountListener = menuItemAmountListener;
+    this.basketItems = basketItems;
   }
 
   @Override

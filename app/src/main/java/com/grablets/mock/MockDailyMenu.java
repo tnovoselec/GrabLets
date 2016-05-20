@@ -4,6 +4,7 @@ import com.grablets.viewmodel.DailyMenuViewModel;
 import com.grablets.viewmodel.DailyMenuViewModel.MenuItemViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MockDailyMenu {
@@ -32,7 +33,7 @@ public class MockDailyMenu {
     menuItemViewModels.add(menuItemViewModel);
 
 
-    DailyMenuViewModel dailyMenuViewModel = new DailyMenuViewModel(menuItemViewModels);
+    DailyMenuViewModel dailyMenuViewModel = new DailyMenuViewModel(menuItemViewModels, new HashMap<>());
     return dailyMenuViewModel;
   }
 }

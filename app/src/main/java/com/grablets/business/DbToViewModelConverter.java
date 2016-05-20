@@ -49,12 +49,12 @@ public class DbToViewModelConverter {
     return menuItemViewModels;
   }
 
-  public static DailyMenuViewModel fromRestaurantsToDailyMenu(List<DbRestaurant> dbRestaurants) {
+  public static DailyMenuViewModel fromRestaurantsToDailyMenu(List<DbRestaurant> dbRestaurants, Map<String, Integer> basketEntries) {
     List<MenuItemViewModel> menuItemViewModels = new ArrayList<>();
     for (DbRestaurant dbRestaurant : dbRestaurants) {
       menuItemViewModels.addAll(fromMenuItems(dbRestaurant.getDbRestaurantMenuItems()));
     }
-    return new DailyMenuViewModel(menuItemViewModels);
+    return new DailyMenuViewModel(menuItemViewModels, basketEntries);
   }
 
   public static DailyMenuOverlayViewModel fromRestaurantsToDailyMenuOverlay(List<DbRestaurant> dbRestaurants) {

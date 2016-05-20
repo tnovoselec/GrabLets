@@ -75,7 +75,7 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
 
   @Override
   public void renderDailyMenu(DailyMenuViewModel dailyMenuViewModel) {
-    dailyMenuAdapter = new DailyMenuAdapter(dailyMenuViewModel.menuItemViewModels, this);
+    dailyMenuAdapter = new DailyMenuAdapter(dailyMenuViewModel.menuItemViewModels, this, dailyMenuViewModel.basketEntries);
     dailyMenuRecyclerView.setAdapter(dailyMenuAdapter);
   }
 

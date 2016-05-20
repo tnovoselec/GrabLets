@@ -25,13 +25,13 @@ public class DailyMenuPresenter extends SubscribingPresenter<DailyMenuMvp.View> 
 
   @Override
   public void getDailyMenu() {
-    Observable.defer(getRestaurantsUseCase::execute)
-        .map(DbToViewModelConverter::fromRestaurantsToDailyMenu)
+    addSubscription(Observable.defer(getRestaurantsUseCase::execute)
+        .map(dbRestaurants -> DbToViewModelConverter.fromRestaurantsToDailyMenu(dbRestaurants, basketManager.getBasketEntries()))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             this::onDailyMenuPulled,
-            this::onDailyMenuPullingFailed);
+            this::onDailyMenuPullingFailed));
   }
 
   @Override

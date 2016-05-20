@@ -56,6 +56,10 @@ public class BasketManager {
     return relay;
   }
 
+  public Map<String, Integer> getBasketEntries() {
+    return basketEntries;
+  }
+
   private void insertBasketItem(String menuItemId, int newAmount) {
     basketDbRepository.insertBasketItem(menuItemId, newAmount).subscribeOn(Schedulers.io())
         .subscribe();

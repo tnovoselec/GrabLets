@@ -83,7 +83,6 @@ public interface ApplicationComponent {
 
   CreateOrderUseCase getCreateOrderUseCase();
 
-
   ClearBasketUseCase getClearBasketUseCase();
 
   void inject(GrabLetsApplication commerceApplication);
