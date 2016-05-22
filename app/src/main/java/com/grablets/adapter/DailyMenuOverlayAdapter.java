@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.afollestad.sectionedrecyclerview.SectionedRecyclerViewAdapter;
 import com.bumptech.glide.Glide;
 import com.grablets.R;
+import com.grablets.utils.FormatUtils;
 import com.grablets.viewmodel.DailyMenuOverlayViewModel.DailyMenuItemOverlayViewModel;
 import com.grablets.viewmodel.DailyMenuOverlayViewModel.RestaurantOverlayViewModel;
 
@@ -107,7 +108,7 @@ public class DailyMenuOverlayAdapter extends SectionedRecyclerViewAdapter<DailyM
           .centerCrop()
           .into(itemImage);
       itemTitle.setText(dailyMenuItemOverlayViewModel.title);
-      itemPrice.setText(String.valueOf(dailyMenuItemOverlayViewModel.price));
+      itemPrice.setText(FormatUtils.formatPrice(dailyMenuItemOverlayViewModel.price));
     }
   }
 }

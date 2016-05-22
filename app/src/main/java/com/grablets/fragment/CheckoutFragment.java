@@ -18,6 +18,7 @@ import com.grablets.di.ComponentProvider;
 import com.grablets.mvp.CheckoutMvp;
 import com.grablets.mvp.presenter.CheckoutPresenter;
 import com.grablets.ui.IncrementerView;
+import com.grablets.utils.FormatUtils;
 import com.grablets.viewmodel.CheckoutViewModel;
 import com.grablets.viewmodel.CheckoutViewModel.CheckoutMenuItemViewModel;
 
@@ -39,6 +40,8 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
   EditText checkoutDeliveryAddress;
   @BindView(R.id.checkout_delivery_time)
   EditText checkoutDeliveryTime;
+  @BindView(R.id.checkout_total)
+  TextView checkoutTotal;
 
   @Inject
   CheckoutPresenter checkoutPresenter;
@@ -115,6 +118,8 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
 
       checkoutMenuContainer.addView(itemView);
     }
+
+    checkoutTotal.setText(FormatUtils.formatPrice(checkoutViewModel.total));
   }
 
   private void fillUserData(CheckoutViewModel checkoutViewModel) {

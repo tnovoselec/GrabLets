@@ -1,15 +1,19 @@
 package com.grablets.viewmodel;
 
+import com.annimon.stream.Stream;
+
 import java.util.List;
 
 public class CheckoutViewModel {
 
   public final UserDataViewModel userDataViewModel;
   public final List<CheckoutMenuItemViewModel> checkoutMenuItemViewModels;
+  public final double total;
 
   public CheckoutViewModel(List<CheckoutMenuItemViewModel> checkoutMenuItemViewModels, UserDataViewModel userDataViewModel) {
     this.checkoutMenuItemViewModels = checkoutMenuItemViewModels;
     this.userDataViewModel = userDataViewModel;
+    this.total = Stream.of(checkoutMenuItemViewModels).map((itemViewModel) -> itemViewModel.price).reduce(0.0, (value1, value2) -> value1 + value2);
   }
 
   public static class UserDataViewModel {

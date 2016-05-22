@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.grablets.R;
 import com.grablets.ui.IncrementerView;
+import com.grablets.utils.FormatUtils;
 import com.grablets.viewmodel.MenuItemViewModel;
 
 import java.util.List;
@@ -54,6 +55,8 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
 
     @BindView(R.id.item_menu_title)
     TextView itemTitle;
+    @BindView(R.id.item_menu_price)
+    TextView itemPrice;
     @BindView(R.id.item_menu_description)
     TextView itemDescription;
     @BindView(R.id.item_menu_image)
@@ -75,6 +78,7 @@ public class DailyMenuAdapter extends RecyclerView.Adapter<DailyMenuAdapter.Dail
           .centerCrop()
           .into(itemImage);
       itemTitle.setText(menuItemViewModel.title);
+      itemPrice.setText(FormatUtils.formatPrice(menuItemViewModel.price));
       itemDescription.setText(menuItemViewModel.description);
       itemIncrementer.setAmountListener(this);
       Integer amount = basketItems.get(menuItemViewModel.id);

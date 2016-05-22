@@ -25,28 +25,37 @@
       <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/padding_default"
-        android:paddingRight="@dimen/padding_default">
+        android:paddingStart="@dimen/padding_default">
 
         <TextView
-          style="@style/TextAppearance.AppCompat.Title"
           android:id="@+id/item_menu_title"
+          style="@style/TextAppearance.AppCompat.Title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/padding_default"/>
 
         <TextView
-          style="@style/TextAppearance.AppCompat.Medium"
-          android:id="@+id/item_menu_description"
+          android:id="@+id/item_menu_price"
+          style="@style/TextAppearance.AppCompat.Title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_alignParentEnd="true"
+          android:layout_marginEnd="@dimen/padding_default"
+          android:layout_marginTop="@dimen/padding_default"/>
+
+        <TextView
+          android:id="@+id/item_menu_description"
+          style="@style/TextAppearance.AppCompat.Medium"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_toStartOf="@id/item_menu_price"
           android:layout_below="@id/item_menu_title"/>
 
         <com.grablets.ui.IncrementerView
           android:id="@+id/item_menu_incrementer"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignParentRight="true"
+          android:layout_alignParentEnd="true"
           android:layout_below="@id/item_menu_description"
           android:padding="@dimen/padding_medium"/>
       </RelativeLayout>
