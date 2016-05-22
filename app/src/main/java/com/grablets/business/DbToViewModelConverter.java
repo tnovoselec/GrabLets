@@ -93,13 +93,12 @@ public class DbToViewModelConverter {
           basketItem.getAmount(),
           basketItem.getMenuItemId(),
           restaurantMenuItem.getPrice() * basketItem.getAmount(),
-          restaurantMenuItem.getTitle()
-      );
+          restaurantMenuItem.getTitle(),
+          restaurantMenuItem.getImageUrl());
       menuItemViewModels.add(checkoutMenuItemViewModel);
     }
 
-    CheckoutViewModel checkoutViewModel = new CheckoutViewModel(menuItemViewModels, null);
-    return checkoutViewModel;
+    return new CheckoutViewModel(menuItemViewModels, null);
   }
 
   public static RestaurantMenuViewModel fromMenuItems(List<DbRestaurantMenuItem> restaurantMenuItems, Map<String, Integer> basketEntries) {

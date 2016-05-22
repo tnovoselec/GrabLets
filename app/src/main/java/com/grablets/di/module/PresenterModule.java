@@ -59,8 +59,9 @@ public class PresenterModule {
                                       GetRestaurantMenuItemsUseCase getRestaurantMenuItemsUseCase,
                                       ClearBasketUseCase clearBasketUseCase,
                                       CreateOrderUseCase createOrderUseCase,
-                                      Router router){
-    return new CheckoutPresenter(getBasketUseCase, getRestaurantMenuItemsUseCase, clearBasketUseCase, createOrderUseCase, router);
+                                      Router router,
+                                      BasketManager basketManager){
+    return new CheckoutPresenter(getBasketUseCase, getRestaurantMenuItemsUseCase, clearBasketUseCase, createOrderUseCase, router, basketManager);
   }
 
   @Provides

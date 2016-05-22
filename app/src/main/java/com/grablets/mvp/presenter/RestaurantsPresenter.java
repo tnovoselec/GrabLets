@@ -14,7 +14,7 @@ import rx.schedulers.Schedulers;
 
 public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.View> implements RestaurantsMvp.Presenter {
 
- private final GetRestaurantsUseCase getRestaurantsUseCase;
+  private final GetRestaurantsUseCase getRestaurantsUseCase;
   private final Router router;
 
   @Inject
@@ -25,13 +25,13 @@ public class RestaurantsPresenter extends SubscribingPresenter<RestaurantsMvp.Vi
 
   @Override
   public void getRestaurants() {
-    Observable.defer(getRestaurantsUseCase::execute)
+    addSubscription(Observable.defer(getRestaurantsUseCase::execute)
         .map(DbToViewModelConverter::fromRestaurants)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             this::onRestaurantsPulled,
-            this::onRestaurantsPullingFailed);
+            this::onRestaurantsPullingFailed));
   }
 
   @Override

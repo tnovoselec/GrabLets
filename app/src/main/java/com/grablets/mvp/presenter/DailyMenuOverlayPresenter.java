@@ -22,13 +22,13 @@ public class DailyMenuOverlayPresenter extends SubscribingPresenter<DailyMenuOve
 
   @Override
   public void getDailyMenu() {
-    Observable.defer(getRestaurantsUseCase::execute)
+    addSubscription(Observable.defer(getRestaurantsUseCase::execute)
         .map(DbToViewModelConverter::fromRestaurantsToDailyMenuOverlay)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             this::onDailyMenuPulled,
-            this::onDailyMenuPullingFailed);
+            this::onDailyMenuPullingFailed));
   }
 
   private void onDailyMenuPulled(DailyMenuOverlayViewModel dailyMenuOverlayViewModel) {

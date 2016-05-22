@@ -89,6 +89,7 @@ public class RestaurantMenuFragment extends BaseFragment implements RestaurantMe
   @Override
   public void renderDailyMenu(RestaurantMenuViewModel restaurantMenuViewModel) {
     dailyMenuAdapter = new DailyMenuAdapter(restaurantMenuViewModel.menuItemViewModels, this, restaurantMenuViewModel.basketEntries);
+    dailyMenuAdapter.setHasStableIds(true);
     dailyMenuRecyclerView.setAdapter(dailyMenuAdapter);
   }
 

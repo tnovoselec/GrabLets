@@ -29,12 +29,14 @@ public class CheckoutViewModel {
     public final int amount;
     public final double price;
     public final String title;
+    public final String imageUrl;
 
-    public CheckoutMenuItemViewModel(int amount, String id, double price, String title) {
+    public CheckoutMenuItemViewModel(int amount, String id, double price, String title, String imageUrl) {
       this.amount = amount;
       this.id = id;
       this.price = price;
       this.title = title;
+      this.imageUrl = imageUrl;
     }
   }
 }

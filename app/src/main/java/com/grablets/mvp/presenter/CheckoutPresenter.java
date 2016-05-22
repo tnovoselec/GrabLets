@@ -4,6 +4,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.grablets.R;
 import com.grablets.Router;
+import com.grablets.business.BasketManager;
 import com.grablets.business.DbToViewModelConverter;
 import com.grablets.db.model.DbBasketItem;
 import com.grablets.db.model.DbRestaurantMenuItem;
@@ -14,6 +15,8 @@ import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.mvp.CheckoutMvp;
 import com.grablets.viewmodel.CheckoutViewModel;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -32,14 +35,16 @@ public class CheckoutPresenter extends SubscribingPresenter<CheckoutMvp.View> im
   private final ClearBasketUseCase clearBasketUseCase;
   private final CreateOrderUseCase createOrderUseCase;
   private final Router router;
+  private final BasketManager basketManager;
 
   @Inject
-  public CheckoutPresenter(GetBasketUseCase getBasketUseCase, GetRestaurantMenuItemsUseCase getRestaurantMenuItemsUseCase, ClearBasketUseCase clearBasketUseCase, CreateOrderUseCase createOrderUseCase, Router router) {
+  public CheckoutPresenter(GetBasketUseCase getBasketUseCase, GetRestaurantMenuItemsUseCase getRestaurantMenuItemsUseCase, ClearBasketUseCase clearBasketUseCase, CreateOrderUseCase createOrderUseCase, Router router, BasketManager basketManager) {
     this.getBasketUseCase = getBasketUseCase;
     this.getRestaurantMenuItemsUseCase = getRestaurantMenuItemsUseCase;
     this.clearBasketUseCase = clearBasketUseCase;
     this.createOrderUseCase = createOrderUseCase;
     this.router = router;
+    this.basketManager = basketManager;
   }
 
   @Override
@@ -54,11 +59,22 @@ public class CheckoutPresenter extends SubscribingPresenter<CheckoutMvp.View> im
             return DbToViewModelConverter.fromBasketAndUserData(basketItems, dbRestaurantMenuItems);
           }
         })
+        .map(checkoutViewModel -> {
+          Comparator<CheckoutViewModel.CheckoutMenuItemViewModel> comparator = (lhs, rhs) -> lhs.title.compareTo(rhs.title);
+          Collections.sort(checkoutViewModel.checkoutMenuItemViewModels, comparator);
+          return checkoutViewModel;
+        })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             this::onCheckoutDataPulled,
             this::onCheckoutDataPullingFailed));
+  }
+
+  @Override
+  public void onMenuItemAmountChanged(String menuItemId, int newAmount) {
+    basketManager.basketEntryChanged(menuItemId, newAmount);
+    getCheckoutData();
   }
 
   @Override

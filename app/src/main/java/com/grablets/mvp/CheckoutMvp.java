@@ -11,6 +11,8 @@ public class CheckoutMvp {
   public interface Presenter {
     void getCheckoutData();
 
+    void onMenuItemAmountChanged(String menuItemId, int newAmount);
+
     void onConfirmOrderClicked(String address, Date deliveryTime);
   }
 

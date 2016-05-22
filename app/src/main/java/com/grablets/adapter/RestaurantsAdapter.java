@@ -46,6 +46,12 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     return restaurantViewModels.size();
   }
 
+  @Override
+  public long getItemId(int position) {
+    return restaurantViewModels.get(position).id.hashCode();
+  }
+
+
   class RestaurantsViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.item_restaurant_image)

@@ -7,14 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.grablets.R;
 import com.grablets.di.ActivityComponent;
 import com.grablets.di.ComponentProvider;
 import com.grablets.mvp.CheckoutMvp;
 import com.grablets.mvp.presenter.CheckoutPresenter;
+import com.grablets.ui.IncrementerView;
 import com.grablets.viewmodel.CheckoutViewModel;
 import com.grablets.viewmodel.CheckoutViewModel.CheckoutMenuItemViewModel;
 
@@ -87,14 +90,29 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
   }
 
   private void fillContainer(CheckoutViewModel checkoutViewModel) {
+
     checkoutMenuContainer.removeAllViews();
     LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+
     for (CheckoutMenuItemViewModel checkoutMenuItemViewModel : checkoutViewModel.checkoutMenuItemViewModels) {
       View itemView = layoutInflater.inflate(R.layout.item_checkout_menu_item, checkoutMenuContainer, false);
+
       TextView title = (TextView) itemView.findViewById(R.id.item_checkout_title);
-      title.setText(String.format("%d x %s", checkoutMenuItemViewModel.amount, checkoutMenuItemViewModel.title));
+      title.setText(checkoutMenuItemViewModel.title);
+
       TextView price = (TextView) itemView.findViewById(R.id.item_checkout_price);
       price.setText(String.valueOf(checkoutMenuItemViewModel.price));
+
+      ImageView image = (ImageView) itemView.findViewById(R.id.item_checkout_image);
+      Glide.with(getActivity())
+          .load(checkoutMenuItemViewModel.imageUrl)
+          .centerCrop()
+          .into(image);
+
+      IncrementerView incrementerView = (IncrementerView) itemView.findViewById(R.id.item_checkout_incrementer);
+      incrementerView.setAmount(checkoutMenuItemViewModel.amount);
+      incrementerView.setAmountListener((newAmount) -> checkoutPresenter.onMenuItemAmountChanged(checkoutMenuItemViewModel.id, newAmount));
+
       checkoutMenuContainer.addView(itemView);
     }
   }

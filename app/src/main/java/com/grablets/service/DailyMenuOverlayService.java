@@ -77,6 +77,8 @@ public class DailyMenuOverlayService extends Service implements DailyMenuOverlay
   public void onDestroy() {
     super.onDestroy();
     removeOverlay();
+    dailyMenuOverlayPresenter.deactivate();
+    dailyMenuOverlayPresenter.detachView();
   }
 
   private void removeOverlay() {

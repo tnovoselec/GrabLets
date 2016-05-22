@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.grablets.R;
@@ -53,6 +54,8 @@ public class RestaurantMenuActivity extends BaseActivity {
     ButterKnife.bind(this);
 
     setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowTitleEnabled(true);
 
     if (savedInstanceState == null) {
       String restaurantId = getIntent().getStringExtra(KEY_RESTAURANT_ID);
@@ -61,7 +64,7 @@ public class RestaurantMenuActivity extends BaseActivity {
       getSupportFragmentManager().beginTransaction()
           .replace(R.id.restaurant_menu_container, restaurantMenuFragment, RestaurantMenuFragment.TAG)
           .commit();
-      toolbar.setTitle(restaurantName.toUpperCase());
+      getSupportActionBar().setTitle(restaurantName);
     }
   }
 
@@ -86,6 +89,16 @@ public class RestaurantMenuActivity extends BaseActivity {
   @OnClick(R.id.basket_label)
   public void onBasketClicked() {
     router.showCheckoutActivity();
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        onBackPressed();
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   private Subscriber<Map<String, Integer>> createBasketSubscriber() {
