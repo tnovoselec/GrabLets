@@ -40,12 +40,14 @@ public class DailyMenuOverlayViewModel {
   }
 
   public static class DailyMenuItemOverlayViewModel {
+    public final String id;
     public final String title;
     public final String imageUrl;
     public final String description;
     public final double price;
 
-    public DailyMenuItemOverlayViewModel(String description, String title, String imageUrl, double price) {
+    public DailyMenuItemOverlayViewModel(String id, String title, String description, String imageUrl, double price) {
+      this.id = id;
       this.description = description;
       this.title = title;
       this.imageUrl = imageUrl;

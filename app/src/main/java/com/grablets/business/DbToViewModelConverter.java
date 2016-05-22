@@ -70,6 +70,7 @@ public class DbToViewModelConverter {
       for (DbRestaurantMenuItem dbRestaurantMenuItem : dbRestaurant.getDbRestaurantMenuItems()) {
 
         DailyMenuOverlayViewModel.DailyMenuItemOverlayViewModel dailyMenuOverlayViewModel = new DailyMenuOverlayViewModel.DailyMenuItemOverlayViewModel(
+            dbRestaurantMenuItem.getId(),
             dbRestaurantMenuItem.getTitle(),
             dbRestaurantMenuItem.getDescription(),
             dbRestaurantMenuItem.getImageUrl(),

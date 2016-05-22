@@ -23,11 +23,17 @@ import butterknife.ButterKnife;
 
 public class DailyMenuOverlayAdapter extends SectionedRecyclerViewAdapter<DailyMenuOverlayAdapter.OverlayViewHolder> {
 
+  public interface MenuItemClickLister {
+    void onMenuItemSelected(String menuItemId);
+  }
+
   private final Map<RestaurantOverlayViewModel, List<DailyMenuItemOverlayViewModel>> data;
   private final List<RestaurantOverlayViewModel> restaurantOverlayViewModels;
+  private final MenuItemClickLister menuItemClickLister;
 
-  public DailyMenuOverlayAdapter(Map<RestaurantOverlayViewModel, List<DailyMenuItemOverlayViewModel>> data) {
+  public DailyMenuOverlayAdapter(Map<RestaurantOverlayViewModel, List<DailyMenuItemOverlayViewModel>> data, MenuItemClickLister menuItemClickLister) {
     this.data = data;
+    this.menuItemClickLister = menuItemClickLister;
     restaurantOverlayViewModels = new ArrayList<>(data.keySet());
   }
 
@@ -109,6 +115,7 @@ public class DailyMenuOverlayAdapter extends SectionedRecyclerViewAdapter<DailyM
           .into(itemImage);
       itemTitle.setText(dailyMenuItemOverlayViewModel.title);
       itemPrice.setText(FormatUtils.formatPrice(dailyMenuItemOverlayViewModel.price));
+      itemView.setOnClickListener((view) -> menuItemClickLister.onMenuItemSelected(dailyMenuItemOverlayViewModel.id));
     }
   }
 }

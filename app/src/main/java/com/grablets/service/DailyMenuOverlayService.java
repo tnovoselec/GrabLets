@@ -19,6 +19,7 @@ import android.view.WindowManager;
 
 import com.grablets.GrabLetsApplication;
 import com.grablets.R;
+import com.grablets.activity.CheckoutActivity;
 import com.grablets.adapter.DailyMenuOverlayAdapter;
 import com.grablets.mvp.DailyMenuOverlayMvp;
 import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
@@ -30,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DailyMenuOverlayService extends Service implements DailyMenuOverlayMvp.View {
+public class DailyMenuOverlayService extends Service implements DailyMenuOverlayMvp.View, DailyMenuOverlayAdapter.MenuItemClickLister {
 
   @BindView(R.id.overlay_daily_menu_recycler_view)
   RecyclerView recyclerView;
@@ -112,7 +113,7 @@ public class DailyMenuOverlayService extends Service implements DailyMenuOverlay
 
 
     recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-    recyclerView.setAdapter(new DailyMenuOverlayAdapter(dailyMenuOverlayViewModel.dailyMenuOverlayData));
+    recyclerView.setAdapter(new DailyMenuOverlayAdapter(dailyMenuOverlayViewModel.dailyMenuOverlayData, this));
 
     params = new WindowManager.LayoutParams(
         WindowManager.LayoutParams.MATCH_PARENT,
@@ -147,7 +148,20 @@ public class DailyMenuOverlayService extends Service implements DailyMenuOverlay
   }
 
   @Override
+  public void showCheckoutScreen() {
+    Intent intent = CheckoutActivity.createIntent(this);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+    stopSelf();
+  }
+
+  @Override
   public void showErrorMessage(int errorMessageId) {
 
+  }
+
+  @Override
+  public void onMenuItemSelected(String menuItemId) {
+    dailyMenuOverlayPresenter.onMenuItemSelected(menuItemId);
   }
 }

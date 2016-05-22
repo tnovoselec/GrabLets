@@ -18,6 +18,7 @@ public class MockDailyMenuOverlay {
     List<DailyMenuItemOverlayViewModel> dailyMenuOverlayViewModels = new ArrayList<>();
 
     DailyMenuItemOverlayViewModel dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "0",
         "Ćevapi s lukom",
         "Fini ćevapi s lukom",
         "http://www.index.hr/images2/cevapi_ilustracija_625.jpeg",
@@ -26,6 +27,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels.add(dailyMenuOverlayViewModel);
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "1",
         "Čobanac",
         "Originalni slavonski čobanac sa veprovinom i ostalom divljači",
         "http://www.volim-meso.hr/wordpress/wp-content/uploads/2014/11/cobanac-naslovna.jpg",
@@ -34,6 +36,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels.add(dailyMenuOverlayViewModel);
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "2",
         "Odojak",
         "Ohlađeni pečeni odojak",
         "http://cdn.coolinarika.net/image/peceni-odojak-4724e15093c8f8c5b3161a79fa4bd144_header.jpg?v=5",
@@ -47,6 +50,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels = new ArrayList<>();
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "3",
         "Ćevapi s lukom",
         "Fini ćevapi s lukom",
         "http://www.index.hr/images2/cevapi_ilustracija_625.jpeg",
@@ -55,6 +59,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels.add(dailyMenuOverlayViewModel);
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "4",
         "Čobanac",
         "Originalni slavonski čobanac sa veprovinom i ostalom divljači",
         "http://www.volim-meso.hr/wordpress/wp-content/uploads/2014/11/cobanac-naslovna.jpg",
@@ -63,6 +68,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels.add(dailyMenuOverlayViewModel);
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "5",
         "Odojak",
         "Ohlađeni pečeni odojak",
         "http://cdn.coolinarika.net/image/peceni-odojak-4724e15093c8f8c5b3161a79fa4bd144_header.jpg?v=5",
@@ -76,6 +82,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels = new ArrayList<>();
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "6",
         "Ćevapi s lukom",
         "Fini ćevapi s lukom",
         "http://www.index.hr/images2/cevapi_ilustracija_625.jpeg",
@@ -84,6 +91,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels.add(dailyMenuOverlayViewModel);
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "7",
         "Čobanac",
         "Originalni slavonski čobanac sa veprovinom i ostalom divljači",
         "http://www.volim-meso.hr/wordpress/wp-content/uploads/2014/11/cobanac-naslovna.jpg",
@@ -92,6 +100,7 @@ public class MockDailyMenuOverlay {
     dailyMenuOverlayViewModels.add(dailyMenuOverlayViewModel);
 
     dailyMenuOverlayViewModel = new DailyMenuItemOverlayViewModel(
+        "8",
         "Odojak",
         "Ohlađeni pečeni odojak",
         "http://cdn.coolinarika.net/image/peceni-odojak-4724e15093c8f8c5b3161a79fa4bd144_header.jpg?v=5",

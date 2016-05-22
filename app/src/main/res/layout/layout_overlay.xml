@@ -7,7 +7,7 @@
   android:orientation="vertical">
   <LinearLayout
     android:id="@+id/daily_menu_overlay_container"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
@@ -36,6 +36,7 @@
 
     <android.support.v7.widget.RecyclerView
       android:id="@+id/overlay_daily_menu_recycler_view"
+      android:background="@android:color/white"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>

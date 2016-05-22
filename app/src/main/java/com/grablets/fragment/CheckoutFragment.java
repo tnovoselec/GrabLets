@@ -104,7 +104,7 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
       title.setText(checkoutMenuItemViewModel.title);
 
       TextView price = (TextView) itemView.findViewById(R.id.item_checkout_price);
-      price.setText(String.valueOf(checkoutMenuItemViewModel.price));
+      price.setText(FormatUtils.formatPrice(checkoutMenuItemViewModel.price));
 
       ImageView image = (ImageView) itemView.findViewById(R.id.item_checkout_image);
       Glide.with(getActivity())

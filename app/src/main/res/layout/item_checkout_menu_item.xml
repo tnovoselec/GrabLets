@@ -13,30 +13,27 @@
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true">
     <RelativeLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:gravity="center_vertical"
-      android:orientation="horizontal"
       android:padding="@dimen/padding_default">
-
       <ImageView
         android:id="@+id/item_checkout_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/padding_default"/>
+        android:layout_marginEnd="@dimen/padding_default"/>
       <com.grablets.ui.IncrementerView
         android:id="@+id/item_checkout_incrementer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentEnd="true"/>
       <TextView
         android:id="@+id/item_checkout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/item_checkout_incrementer"
-        android:layout_toRightOf="@id/item_checkout_image"
+        android:layout_toStartOf="@id/item_checkout_incrementer"
+        android:layout_toEndOf="@id/item_checkout_image"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="@android:color/black"
@@ -46,8 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/item_checkout_incrementer"
-        android:layout_toRightOf="@id/item_checkout_image"
+        android:layout_toStartOf="@id/item_checkout_incrementer"
+        android:layout_toEndOf="@id/item_checkout_image"
         android:textColor="@android:color/black"
         android:textSize="14sp"/>
 

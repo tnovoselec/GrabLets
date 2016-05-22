@@ -25,31 +25,33 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  DailyMenuPresenter dailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase, BasketManager basketManager){
+  DailyMenuPresenter dailyMenuPresenter(GetRestaurantsUseCase getRestaurantsUseCase, BasketManager basketManager) {
     return new DailyMenuPresenter(getRestaurantsUseCase, basketManager);
   }
 
   @Provides
   @ActivityScope
-  RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router){
+  RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router) {
     return new RestaurantsPresenter(getRestaurantsUseCase, router);
   }
 
   @Provides
   @ActivityScope
-  DailyMenuOverlayPresenter dailyMenuOverlayPresenter(GetRestaurantsUseCase getRestaurantsUseCase){
-    return new DailyMenuOverlayPresenter(getRestaurantsUseCase);
+  DailyMenuOverlayPresenter dailyMenuOverlayPresenter(GetRestaurantsUseCase getRestaurantsUseCase,
+                                                      ClearBasketUseCase clearBasketUseCase,
+                                                      BasketManager basketManager) {
+    return new DailyMenuOverlayPresenter(getRestaurantsUseCase, clearBasketUseCase, basketManager);
   }
 
   @Provides
   @ActivityScope
-  LoginPresenter loginPresenter(Router router){
+  LoginPresenter loginPresenter(Router router) {
     return new LoginPresenter(router);
   }
 
   @Provides
   @ActivityScope
-  RegistrationPresenter registrationPresenter(Router router){
+  RegistrationPresenter registrationPresenter(Router router) {
     return new RegistrationPresenter(router);
   }
 
@@ -60,13 +62,14 @@ public class PresenterModule {
                                       ClearBasketUseCase clearBasketUseCase,
                                       CreateOrderUseCase createOrderUseCase,
                                       Router router,
-                                      BasketManager basketManager){
+                                      BasketManager basketManager) {
     return new CheckoutPresenter(getBasketUseCase, getRestaurantMenuItemsUseCase, clearBasketUseCase, createOrderUseCase, router, basketManager);
   }
 
   @Provides
   @ActivityScope
-  RestaurantMenuPresenter restaurantMenuPresenter(GetRestaurantMenuItemsByIdUseCase getRestaurantMenuItemsByIdUseCase, BasketManager basketManager){
+  RestaurantMenuPresenter restaurantMenuPresenter(GetRestaurantMenuItemsByIdUseCase getRestaurantMenuItemsByIdUseCase,
+                                                  BasketManager basketManager) {
     return new RestaurantMenuPresenter(getRestaurantMenuItemsByIdUseCase, basketManager);
   }
 }
