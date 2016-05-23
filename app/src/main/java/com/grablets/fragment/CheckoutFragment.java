@@ -1,14 +1,17 @@
 package com.grablets.fragment;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -29,8 +32,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
-public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
+
+public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View, TimePickerDialog.OnTimeSetListener {
 
   public static final String TAG = CheckoutFragment.class.getSimpleName();
 
@@ -132,5 +137,21 @@ public class CheckoutFragment extends BaseFragment implements CheckoutMvp.View {
     String deliveryAddress = checkoutDeliveryAddress.getText().toString();
     Date deliveryTime = Calendar.getInstance().getTime();//checkoutDeliveryTime.getText().toString();
     checkoutPresenter.onConfirmOrderClicked(deliveryAddress, deliveryTime);
+  }
+
+  @OnTouch(R.id.checkout_delivery_time)
+  public boolean onDeliveryTimeClicked(MotionEvent event) {
+    if (event.getAction() == MotionEvent.ACTION_UP) {
+      TimePickerFragment timePickerFragment = TimePickerFragment.create();
+      timePickerFragment.setListener(this);
+      timePickerFragment.show(getChildFragmentManager(), TimePickerFragment.TAG);
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    checkoutDeliveryTime.setText(String.format("%02d:%02d", hourOfDay, minute));
   }
 }

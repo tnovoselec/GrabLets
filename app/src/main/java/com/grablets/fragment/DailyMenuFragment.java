@@ -26,6 +26,8 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
 
   @BindView(R.id.daily_menu_recycler_view)
   RecyclerView dailyMenuRecyclerView;
+  @BindView(R.id.daily_menu_progress)
+  View dailyMenuProgress;
 
   DailyMenuAdapter dailyMenuAdapter;
 
@@ -52,6 +54,7 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
     dailyMenuPresenter.activate();
     dailyMenuPresenter.attachView(this);
     dailyMenuPresenter.getDailyMenu();
+    dailyMenuProgress.setVisibility(View.VISIBLE);
   }
 
   @Override
@@ -77,6 +80,7 @@ public class DailyMenuFragment extends BaseFragment implements DailyMenuMvp.View
   public void renderDailyMenu(DailyMenuViewModel dailyMenuViewModel) {
     dailyMenuAdapter = new DailyMenuAdapter(dailyMenuViewModel.menuItemViewModels, this, dailyMenuViewModel.basketEntries);
     dailyMenuRecyclerView.setAdapter(dailyMenuAdapter);
+    dailyMenuProgress.setVisibility(View.GONE);
   }
 
   @Override

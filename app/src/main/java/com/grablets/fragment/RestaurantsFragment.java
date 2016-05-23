@@ -27,6 +27,8 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
 
   @BindView(R.id.restaurants_recycler_view)
   RecyclerView restaurantsRecyclerView;
+  @BindView(R.id.restaurants_progress)
+  View restaurantsProgress;
 
   @Inject
   RestaurantsPresenter restaurantsPresenter;
@@ -49,6 +51,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
     restaurantsPresenter.activate();
     restaurantsPresenter.attachView(this);
     restaurantsPresenter.getRestaurants();
+    restaurantsProgress.setVisibility(View.VISIBLE);
   }
 
   @Override
@@ -66,6 +69,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
     restaurantsAdapter = new RestaurantsAdapter(restaurantsViewModel.restaurantViewModels, this);
     restaurantsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     restaurantsRecyclerView.setAdapter(restaurantsAdapter);
+    restaurantsProgress.setVisibility(View.GONE);
   }
 
   @Override
