@@ -26,6 +26,7 @@ public class FavouriteRestaurantsRepository {
     }else {
       favouriteRestaurants.remove(restaurantId);
     }
+    preferenceAccessor.setFavouriteRestaurants(favouriteRestaurants);
     return Completable.complete();
   }
 }

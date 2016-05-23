@@ -18,10 +18,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class DbToViewModelConverter {
 
-  public static RestaurantsViewModel fromRestaurants(List<DbRestaurant> dbRestaurants) {
+  public static RestaurantsViewModel fromRestaurantsAndFavourites(List<DbRestaurant> dbRestaurants,
+                                                                  Set<String> favouriteRestaurants) {
     List<RestaurantViewModel> restaurantViewModels = new ArrayList<>();
 
     for (DbRestaurant dbRestaurant : dbRestaurants) {
@@ -30,7 +32,7 @@ public class DbToViewModelConverter {
           dbRestaurant.getTitle(),
           dbRestaurant.getDescription(),
           dbRestaurant.getImageUrl(),
-          false);
+          favouriteRestaurants.contains(dbRestaurant.getId()));
       restaurantViewModels.add(restaurantViewModel);
     }
 

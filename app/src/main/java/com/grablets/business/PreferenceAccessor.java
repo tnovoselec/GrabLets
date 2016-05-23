@@ -2,7 +2,7 @@ package com.grablets.business;
 
 import android.content.SharedPreferences;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -51,7 +51,7 @@ public class PreferenceAccessor {
   }
 
   public Set<String> getFavouriteRestaurants(){
-    return sharedPreferences.getStringSet(FAVOURITE_RESTAURANTS, Collections.emptySet());
+    return sharedPreferences.getStringSet(FAVOURITE_RESTAURANTS, new HashSet<>());
   }
 
   // Helper methods

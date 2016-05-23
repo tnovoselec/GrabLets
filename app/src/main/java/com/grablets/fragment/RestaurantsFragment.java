@@ -84,6 +84,6 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
 
   @Override
   public void onRestaurantFavouriteClicked(RestaurantsViewModel.RestaurantViewModel restaurantViewModel, boolean isFavourite) {
-
+    restaurantsPresenter.onRestaurantFavourited(restaurantViewModel.id, isFavourite);
   }
 }

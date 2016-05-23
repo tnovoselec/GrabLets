@@ -3,9 +3,11 @@ package com.grablets.di.module;
 import com.grablets.Router;
 import com.grablets.business.BasketManager;
 import com.grablets.di.scope.ActivityScope;
+import com.grablets.interactor.ChangeRestaurantFavouriteStatusUseCase;
 import com.grablets.interactor.ClearBasketUseCase;
 import com.grablets.interactor.CreateOrderUseCase;
 import com.grablets.interactor.GetBasketUseCase;
+import com.grablets.interactor.GetFavouriteRestaurantsUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsByIdUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
@@ -32,14 +34,20 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router) {
-    return new RestaurantsPresenter(getRestaurantsUseCase, router);
+  RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase,
+                                            GetFavouriteRestaurantsUseCase getFavouriteRestaurantsUseCase,
+                                            ChangeRestaurantFavouriteStatusUseCase changeRestaurantFavouriteStatusUseCase,
+                                            Router router) {
+    return new RestaurantsPresenter(getRestaurantsUseCase, getFavouriteRestaurantsUseCase, changeRestaurantFavouriteStatusUseCase, router);
   }
 
   @Provides
   @ActivityScope
-  MyRestaurantsPresenter myRestaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router) {
-    return new MyRestaurantsPresenter(getRestaurantsUseCase, router);
+  MyRestaurantsPresenter myRestaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase,
+                                                GetFavouriteRestaurantsUseCase getFavouriteRestaurantsUseCase,
+                                                ChangeRestaurantFavouriteStatusUseCase changeRestaurantFavouriteStatusUseCase,
+                                                Router router) {
+    return new MyRestaurantsPresenter(getRestaurantsUseCase, getFavouriteRestaurantsUseCase, changeRestaurantFavouriteStatusUseCase, router);
   }
 
   @Provides

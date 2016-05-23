@@ -79,7 +79,7 @@ public class MyRestaurantsFragment extends BaseFragment implements MyRestaurants
 
   @Override
   public void onRestaurantFavouriteClicked(RestaurantsViewModel.RestaurantViewModel restaurantViewModel, boolean isFavourite) {
-
+    restaurantsPresenter.onRestaurantFavourited(restaurantViewModel.id, isFavourite);
   }
 
   @Override
