@@ -2,6 +2,9 @@ package com.grablets.business;
 
 import android.content.SharedPreferences;
 
+import java.util.Collections;
+import java.util.Set;
+
 import javax.inject.Inject;
 
 public class PreferenceAccessor {
@@ -9,6 +12,8 @@ public class PreferenceAccessor {
   private static final String ACTIVE_MENU_ITEM = "active_menu_item";
   private static final String NOTIFICATIONS_ENABLED = "notifications_enabled";
   private static final String NOTIFICATIONS_TIME = "notifications_time";
+
+  private static final String FAVOURITE_RESTAURANTS = "favourite_restaurants";
 
   private final SharedPreferences sharedPreferences;
 
@@ -39,6 +44,14 @@ public class PreferenceAccessor {
 
   public long getNotificationsTime(){
     return getLong(NOTIFICATIONS_TIME);
+  }
+
+  public void setFavouriteRestaurants(Set<String> restaurantIds){
+    edit().putStringSet(FAVOURITE_RESTAURANTS, restaurantIds).apply();
+  }
+
+  public Set<String> getFavouriteRestaurants(){
+    return sharedPreferences.getStringSet(FAVOURITE_RESTAURANTS, Collections.emptySet());
   }
 
   // Helper methods

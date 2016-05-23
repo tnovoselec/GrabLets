@@ -2,7 +2,7 @@ package com.grablets.mvp;
 
 import com.grablets.viewmodel.RestaurantsViewModel;
 
-public class RestaurantsMvp {
+public class MyRestaurantsMvp {
 
   public interface Presenter {
     void getRestaurants();

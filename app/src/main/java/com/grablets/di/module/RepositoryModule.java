@@ -1,9 +1,11 @@
 package com.grablets.di.module;
 
+import com.grablets.business.PreferenceAccessor;
 import com.grablets.db.BasketItemDao;
 import com.grablets.db.RestaurantMenuItemDao;
 import com.grablets.db.RestaurantsDao;
 import com.grablets.repository.BasketDbRepository;
+import com.grablets.repository.FavouriteRestaurantsRepository;
 import com.grablets.repository.RestaurantDbMenuItemsRepository;
 import com.grablets.repository.RestaurantsDbRepository;
 
@@ -31,5 +33,11 @@ public class RepositoryModule {
   @Singleton
   public RestaurantDbMenuItemsRepository providesRestaurantMenuItemsRepository(RestaurantMenuItemDao restaurantMenuItemDao){
     return new RestaurantDbMenuItemsRepository(restaurantMenuItemDao);
+  }
+
+  @Provides
+  @Singleton
+  public FavouriteRestaurantsRepository providesFavouriteRestaurantsRepository(PreferenceAccessor preferenceAccessor){
+    return new FavouriteRestaurantsRepository(preferenceAccessor);
   }
 }

@@ -4,7 +4,7 @@ import com.grablets.repository.BasketDbRepository;
 
 import rx.Completable;
 
-public class ClearBasketUseCase{
+public class ClearBasketUseCase {
 
   private final BasketDbRepository basketDbRepository;
 

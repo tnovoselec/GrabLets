@@ -29,8 +29,8 @@ public class DbToViewModelConverter {
           dbRestaurant.getId(),
           dbRestaurant.getTitle(),
           dbRestaurant.getDescription(),
-          dbRestaurant.getImageUrl()
-      );
+          dbRestaurant.getImageUrl(),
+          false);
       restaurantViewModels.add(restaurantViewModel);
     }
 

@@ -42,4 +42,5 @@ public class RestaurantsDbRepository {
   public Completable deleteRestaurants() {
     return restaurantMenuItemDao.delete().startWith(restaurantsDao.delete());
   }
+
 }

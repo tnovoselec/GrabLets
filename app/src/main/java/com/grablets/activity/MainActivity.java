@@ -18,6 +18,7 @@ import com.grablets.business.BasketManager;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.fragment.DailyMenuFragment;
+import com.grablets.fragment.MyRestaurantsFragment;
 import com.grablets.fragment.RestaurantsFragment;
 import com.grablets.internal.GrabLetsMenuItem;
 
@@ -53,6 +54,7 @@ public class MainActivity extends BaseActivity
 
   private DailyMenuFragment dailyMenuFragment;
   private RestaurantsFragment restaurantsFragment;
+  private MyRestaurantsFragment myRestaurantsFragment;
 
   private Subscriber<Map<String, Integer>> basketSubscriber;
 
@@ -120,8 +122,7 @@ public class MainActivity extends BaseActivity
       Toast.makeText(this, "U izradi", Toast.LENGTH_SHORT).show();
       preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_ORDERS.itemId);
     } else if (id == R.id.nav_my_restaurants) {
-      Toast.makeText(this, "U izradi", Toast.LENGTH_SHORT).show();
-      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_RESTAURANTS.itemId);
+      showMyRestaurants();
     } else if (id == R.id.nav_settings) {
       showSettings();
     }
@@ -146,6 +147,15 @@ public class MainActivity extends BaseActivity
       restaurantsFragment = RestaurantsFragment.create();
     }
     getSupportFragmentManager().beginTransaction().replace(R.id.main_container, restaurantsFragment, RestaurantsFragment.TAG).commit();
+  }
+
+  private void showMyRestaurants() {
+    toolbar.setTitle(R.string.my_restaurants);
+    preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_RESTAURANTS.itemId);
+    if (myRestaurantsFragment == null) {
+      myRestaurantsFragment = MyRestaurantsFragment.create();
+    }
+    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, myRestaurantsFragment, MyRestaurantsFragment.TAG).commit();
   }
 
   private void showSettings() {

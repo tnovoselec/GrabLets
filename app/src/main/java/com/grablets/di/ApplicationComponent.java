@@ -15,15 +15,18 @@ import com.grablets.di.module.GrabLetsApiModule;
 import com.grablets.di.module.RepositoryModule;
 import com.grablets.di.module.UseCaseModule;
 import com.grablets.di.qualifier.ForApplication;
+import com.grablets.interactor.ChangeRestaurantFavouriteStatusUseCase;
 import com.grablets.interactor.ClearBasketUseCase;
 import com.grablets.interactor.CreateOrderUseCase;
 import com.grablets.interactor.GetBasketUseCase;
+import com.grablets.interactor.GetFavouriteRestaurantsUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsByIdUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
 import com.grablets.receiver.AlarmReceiver;
 import com.grablets.receiver.BootBroadcastReceiver;
 import com.grablets.repository.BasketDbRepository;
+import com.grablets.repository.FavouriteRestaurantsRepository;
 import com.grablets.repository.RestaurantDbMenuItemsRepository;
 import com.grablets.repository.RestaurantsDbRepository;
 import com.grablets.service.DailyMenuOverlayService;
@@ -76,6 +79,8 @@ public interface ApplicationComponent {
 
   BasketDbRepository getBasketDbRepository();
 
+  FavouriteRestaurantsRepository getFavouriteRestaurantsRepository();
+
   GetRestaurantsUseCase getRestaurantsUseCase();
 
   GetBasketUseCase getBasketUseCase();
@@ -87,6 +92,10 @@ public interface ApplicationComponent {
   ClearBasketUseCase getClearBasketUseCase();
 
   GetRestaurantMenuItemsByIdUseCase getRestaurantMenuItemsByIdUseCase();
+
+  ChangeRestaurantFavouriteStatusUseCase getChangeRestaurantFavouriteStatusUseCase();
+
+  GetFavouriteRestaurantsUseCase getGetFavouriteRestaurantsUseCase();
 
   void inject(GrabLetsApplication commerceApplication);
 

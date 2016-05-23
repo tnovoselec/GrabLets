@@ -15,12 +15,14 @@ public class RestaurantsViewModel {
     public final String title;
     public final String description;
     public final String imageUrl;
+    public final boolean isFavourite;
 
-    public RestaurantViewModel(String id, String title, String description, String imageUrl) {
+    public RestaurantViewModel(String id, String title, String description, String imageUrl, boolean isFavourite) {
       this.id = id;
       this.description = description;
       this.title = title;
       this.imageUrl = imageUrl;
+      this.isFavourite = isFavourite;
     }
   }
 }

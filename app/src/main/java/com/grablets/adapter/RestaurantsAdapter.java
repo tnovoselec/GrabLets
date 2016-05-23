@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
   public interface RestaurantClickListener {
     void onRestaurantClicked(RestaurantsViewModel.RestaurantViewModel restaurantViewModel);
+
+    void onRestaurantFavouriteClicked(RestaurantsViewModel.RestaurantViewModel restaurantViewModel, boolean isFavourite);
   }
 
   private final List<RestaurantsViewModel.RestaurantViewModel> restaurantViewModels;
@@ -60,6 +63,8 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     TextView itemRestaurantTitle;
     @BindView(R.id.item_restaurant_description)
     TextView itemRestaurantDescription;
+    @BindView(R.id.item_restaurant_favourite)
+    CheckBox itemRestaurantFavourite;
 
     public RestaurantsViewHolder(View itemView) {
       super(itemView);
@@ -74,7 +79,10 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
       itemRestaurantTitle.setText(restaurantViewModel.title);
       itemRestaurantDescription.setText(restaurantViewModel.description);
       itemView.setOnClickListener((view) -> restaurantClickListener.onRestaurantClicked(restaurantViewModel));
+      itemRestaurantFavourite.setChecked(restaurantViewModel.isFavourite);
+      itemRestaurantFavourite.setOnCheckedChangeListener((buttonView, isChecked) -> restaurantClickListener.onRestaurantFavouriteClicked(restaurantViewModel, isChecked));
     }
+
 
 
   }

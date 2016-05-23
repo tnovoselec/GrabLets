@@ -9,6 +9,7 @@ import com.grablets.activity.SettingsActivity;
 import com.grablets.fragment.CheckoutFragment;
 import com.grablets.fragment.DailyMenuFragment;
 import com.grablets.fragment.LoginFragment;
+import com.grablets.fragment.MyRestaurantsFragment;
 import com.grablets.fragment.RegistrationFragment;
 import com.grablets.fragment.RestaurantMenuFragment;
 import com.grablets.fragment.RestaurantsFragment;
@@ -41,4 +42,6 @@ public interface ActivityComponentInjects {
   void inject(RestaurantMenuActivity restaurantMenuActivity);
 
   void inject(RestaurantMenuFragment restaurantMenuFragment);
+
+  void inject(MyRestaurantsFragment myRestaurantsFragment);
 }

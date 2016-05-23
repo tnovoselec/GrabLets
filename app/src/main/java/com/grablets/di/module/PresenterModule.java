@@ -13,6 +13,7 @@ import com.grablets.mvp.presenter.CheckoutPresenter;
 import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.mvp.presenter.LoginPresenter;
+import com.grablets.mvp.presenter.MyRestaurantsPresenter;
 import com.grablets.mvp.presenter.RegistrationPresenter;
 import com.grablets.mvp.presenter.RestaurantMenuPresenter;
 import com.grablets.mvp.presenter.RestaurantsPresenter;
@@ -33,6 +34,12 @@ public class PresenterModule {
   @ActivityScope
   RestaurantsPresenter restaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router) {
     return new RestaurantsPresenter(getRestaurantsUseCase, router);
+  }
+
+  @Provides
+  @ActivityScope
+  MyRestaurantsPresenter myRestaurantsPresenter(GetRestaurantsUseCase getRestaurantsUseCase, Router router) {
+    return new MyRestaurantsPresenter(getRestaurantsUseCase, router);
   }
 
   @Provides

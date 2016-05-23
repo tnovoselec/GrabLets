@@ -12,18 +12,17 @@ import com.grablets.R;
 import com.grablets.adapter.RestaurantsAdapter;
 import com.grablets.di.ActivityComponent;
 import com.grablets.di.ComponentProvider;
-import com.grablets.mvp.RestaurantsMvp;
-import com.grablets.mvp.presenter.RestaurantsPresenter;
+import com.grablets.mvp.MyRestaurantsMvp;
+import com.grablets.mvp.presenter.MyRestaurantsPresenter;
 import com.grablets.viewmodel.RestaurantsViewModel;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 
+public class MyRestaurantsFragment extends BaseFragment implements MyRestaurantsMvp.View, RestaurantsAdapter.RestaurantClickListener {
 
-public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.View, RestaurantsAdapter.RestaurantClickListener {
-
-  public static final String TAG = RestaurantsFragment.class.getSimpleName();
+  public static final String TAG = MyRestaurantsFragment.class.getSimpleName();
 
   @BindView(R.id.restaurants_recycler_view)
   RecyclerView restaurantsRecyclerView;
@@ -31,12 +30,12 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
   View restaurantsProgress;
 
   @Inject
-  RestaurantsPresenter restaurantsPresenter;
+  MyRestaurantsPresenter restaurantsPresenter;
 
   RestaurantsAdapter restaurantsAdapter;
 
-  public static RestaurantsFragment create() {
-    return new RestaurantsFragment();
+  public static MyRestaurantsFragment create() {
+    return new MyRestaurantsFragment();
   }
 
   @Nullable
@@ -59,10 +58,6 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
     super.onViewCreated(view, savedInstanceState);
   }
 
-  @Override
-  protected void inject(ComponentProvider<ActivityComponent> activityComponentComponentProvider) {
-    activityComponentComponentProvider.getComponent().inject(this);
-  }
 
   @Override
   public void renderRestaurants(RestaurantsViewModel restaurantsViewModel) {
@@ -85,5 +80,10 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsMvp.
   @Override
   public void onRestaurantFavouriteClicked(RestaurantsViewModel.RestaurantViewModel restaurantViewModel, boolean isFavourite) {
 
+  }
+
+  @Override
+  protected void inject(ComponentProvider<ActivityComponent> activityComponentComponentProvider) {
+    activityComponentComponentProvider.getComponent().inject(this);
   }
 }
