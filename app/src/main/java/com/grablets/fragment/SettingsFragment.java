@@ -1,6 +1,7 @@
 package com.grablets.fragment;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,11 +30,16 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 import butterknife.OnTouch;
 
 public class SettingsFragment extends BaseFragment {
 
   public static final String TAG = SettingsFragment.class.getSimpleName();
+
+  public interface SettingsListener {
+    void onSetupPinClicked();
+  }
 
   @BindView(R.id.settings_daily_menu_notification)
   CheckBox settingsDailyMenuNotification;
@@ -58,6 +64,8 @@ public class SettingsFragment extends BaseFragment {
   @Inject
   NotificationScheduler notificationScheduler;
 
+  private SettingsListener settingsListener;
+
   public static SettingsFragment create() {
     return new SettingsFragment();
   }
@@ -81,8 +89,16 @@ public class SettingsFragment extends BaseFragment {
   }
 
   @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    if (context instanceof SettingsListener) {
+      settingsListener = (SettingsListener) context;
+    }
+  }
+
+  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getItemId() == R.id.action_settings){
+    if (item.getItemId() == R.id.action_settings) {
       getActivity().startService(new Intent(getContext(), DailyMenuOverlayService.class));
       return true;
     }
@@ -110,6 +126,13 @@ public class SettingsFragment extends BaseFragment {
       return true;
     }
     return false;
+  }
+
+  @OnClick(R.id.settings_setup_pin)
+  public void onSetupPinClicked() {
+    if (settingsListener != null) {
+      settingsListener.onSetupPinClicked();
+    }
   }
 
   private void showDeliveryTimePicker() {

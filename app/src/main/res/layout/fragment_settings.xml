@@ -10,6 +10,7 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_default">
 
+    <!-- Notifications -->
     <TextView
       style="@style/SettingsTextAppearance"
       android:layout_width="wrap_content"
@@ -21,7 +22,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
-      android:paddingLeft="@dimen/padding_default"
+      android:paddingEnd="@dimen/padding_default"
+      android:paddingStart="@dimen/padding_default"
       android:paddingTop="@dimen/padding_default">
       <TextView
         style="@style/SettingsTextAppearance"
@@ -40,9 +42,29 @@
       style="@style/SettingsTextAppearance"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingLeft="@dimen/padding_default"
+      android:paddingEnd="@dimen/padding_default"
+      android:paddingStart="@dimen/padding_default"
       android:text="@string/delivery_time_default_value"/>
 
+    <!-- Security -->
+    <TextView
+      style="@style/SettingsTextAppearance"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/padding_default"
+      android:layout_marginTop="@dimen/padding_default"
+      android:text="@string/security"/>
+    <View style="@style/DividerHorizontal"/>
+    <TextView
+      android:id="@+id/settings_setup_pin"
+      style="@style/SettingsTextAppearance"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/padding_default"
+      android:layout_marginTop="@dimen/padding_default"
+      android:text="@string/security_pin_message"/>
+
+    <!-- User profile -->
     <TextView
       style="@style/SettingsTextAppearance"
       android:layout_width="wrap_content"
@@ -57,7 +79,8 @@
       android:layout_height="wrap_content"
       android:background="@color/login_background"
       android:orientation="vertical"
-      android:paddingLeft="@dimen/padding_default"
+      android:paddingEnd="@dimen/padding_default"
+      android:paddingStart="@dimen/padding_default"
       android:paddingTop="@dimen/padding_default">
 
       <TextView

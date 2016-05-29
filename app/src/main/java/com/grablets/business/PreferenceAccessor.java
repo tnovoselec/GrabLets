@@ -12,6 +12,7 @@ public class PreferenceAccessor {
   private static final String ACTIVE_MENU_ITEM = "active_menu_item";
   private static final String NOTIFICATIONS_ENABLED = "notifications_enabled";
   private static final String NOTIFICATIONS_TIME = "notifications_time";
+  private static final String SECURITY_PIN = "security_pin";
 
   private static final String FAVOURITE_RESTAURANTS = "favourite_restaurants";
 
@@ -30,28 +31,36 @@ public class PreferenceAccessor {
     return getInt(ACTIVE_MENU_ITEM);
   }
 
-  public void setNotificationsEnabled(boolean enabled){
+  public void setNotificationsEnabled(boolean enabled) {
     set(NOTIFICATIONS_ENABLED, enabled);
   }
 
-  public boolean areNotificationsEnabled(){
+  public boolean areNotificationsEnabled() {
     return getBoolean(NOTIFICATIONS_ENABLED);
   }
 
-  public void setNotificationsTime(long notificationsTime){
+  public void setNotificationsTime(long notificationsTime) {
     set(NOTIFICATIONS_TIME, notificationsTime);
   }
 
-  public long getNotificationsTime(){
+  public long getNotificationsTime() {
     return getLong(NOTIFICATIONS_TIME);
   }
 
-  public void setFavouriteRestaurants(Set<String> restaurantIds){
+  public void setFavouriteRestaurants(Set<String> restaurantIds) {
     edit().putStringSet(FAVOURITE_RESTAURANTS, restaurantIds).apply();
   }
 
-  public Set<String> getFavouriteRestaurants(){
+  public Set<String> getFavouriteRestaurants() {
     return sharedPreferences.getStringSet(FAVOURITE_RESTAURANTS, new HashSet<>());
+  }
+
+  public void setSecurityPin(String pin) {
+    set(SECURITY_PIN, pin);
+  }
+
+  public String getSecurityPin(){
+    return getString(SECURITY_PIN);
   }
 
   // Helper methods

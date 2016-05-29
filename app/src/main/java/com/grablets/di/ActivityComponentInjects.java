@@ -14,6 +14,7 @@ import com.grablets.fragment.RegistrationFragment;
 import com.grablets.fragment.RestaurantMenuFragment;
 import com.grablets.fragment.RestaurantsFragment;
 import com.grablets.fragment.SettingsFragment;
+import com.grablets.fragment.SettingsPinFragment;
 
 public interface ActivityComponentInjects {
 
@@ -44,4 +45,6 @@ public interface ActivityComponentInjects {
   void inject(RestaurantMenuFragment restaurantMenuFragment);
 
   void inject(MyRestaurantsFragment myRestaurantsFragment);
+
+  void inject(SettingsPinFragment settingsPinFragment);
 }
