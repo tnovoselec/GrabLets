@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class MockDailyMenuOverlay {
 
-  public static DailyMenuOverlayViewModel getDailyModel() {
+  public static DailyMenuOverlayViewModel mock() {
     Map<RestaurantOverlayViewModel, List<DailyMenuItemOverlayViewModel>> data = new HashMap<>();
 
     RestaurantOverlayViewModel restaurantOverlayViewModel = new RestaurantOverlayViewModel("Kod dede");

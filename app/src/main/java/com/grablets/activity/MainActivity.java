@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.grablets.R;
 import com.grablets.Router;
@@ -18,6 +17,7 @@ import com.grablets.business.BasketManager;
 import com.grablets.business.PreferenceAccessor;
 import com.grablets.di.ActivityComponent;
 import com.grablets.fragment.DailyMenuFragment;
+import com.grablets.fragment.MyOrdersFragment;
 import com.grablets.fragment.MyRestaurantsFragment;
 import com.grablets.fragment.RestaurantsFragment;
 import com.grablets.internal.GrabLetsMenuItem;
@@ -55,6 +55,7 @@ public class MainActivity extends BaseActivity
   private DailyMenuFragment dailyMenuFragment;
   private RestaurantsFragment restaurantsFragment;
   private MyRestaurantsFragment myRestaurantsFragment;
+  private MyOrdersFragment myOrdersFragment;
 
   private Subscriber<Map<String, Integer>> basketSubscriber;
 
@@ -119,8 +120,7 @@ public class MainActivity extends BaseActivity
     } else if (id == R.id.nav_restaurants) {
       showRestaurants();
     } else if (id == R.id.nav_my_orders) {
-      Toast.makeText(this, "U izradi", Toast.LENGTH_SHORT).show();
-      preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_ORDERS.itemId);
+      showMyOrders();
     } else if (id == R.id.nav_my_restaurants) {
       showMyRestaurants();
     } else if (id == R.id.nav_settings) {
@@ -156,6 +156,15 @@ public class MainActivity extends BaseActivity
       myRestaurantsFragment = MyRestaurantsFragment.create();
     }
     getSupportFragmentManager().beginTransaction().replace(R.id.main_container, myRestaurantsFragment, MyRestaurantsFragment.TAG).commit();
+  }
+
+  private void showMyOrders() {
+    toolbar.setTitle(R.string.my_orders);
+    preferenceAccessor.setActiveMenuItem(GrabLetsMenuItem.MY_ORDERS.itemId);
+    if (myOrdersFragment == null) {
+      myOrdersFragment = MyOrdersFragment.create();
+    }
+    getSupportFragmentManager().beginTransaction().replace(R.id.main_container, myOrdersFragment, MyOrdersFragment.TAG).commit();
   }
 
   private void showSettings() {

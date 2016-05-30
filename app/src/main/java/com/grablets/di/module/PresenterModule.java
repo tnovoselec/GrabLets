@@ -15,6 +15,7 @@ import com.grablets.mvp.presenter.CheckoutPresenter;
 import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
 import com.grablets.mvp.presenter.LoginPresenter;
+import com.grablets.mvp.presenter.MyOrdersPresenter;
 import com.grablets.mvp.presenter.MyRestaurantsPresenter;
 import com.grablets.mvp.presenter.RegistrationPresenter;
 import com.grablets.mvp.presenter.RestaurantMenuPresenter;
@@ -86,5 +87,11 @@ public class PresenterModule {
   RestaurantMenuPresenter restaurantMenuPresenter(GetRestaurantMenuItemsByIdUseCase getRestaurantMenuItemsByIdUseCase,
                                                   BasketManager basketManager) {
     return new RestaurantMenuPresenter(getRestaurantMenuItemsByIdUseCase, basketManager);
+  }
+
+  @Provides
+  @ActivityScope
+  MyOrdersPresenter myOrdersPresenter() {
+    return new MyOrdersPresenter();
   }
 }

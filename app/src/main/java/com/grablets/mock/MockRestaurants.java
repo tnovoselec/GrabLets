@@ -9,7 +9,7 @@ import static com.grablets.viewmodel.RestaurantsViewModel.*;
 
 public class MockRestaurants {
 
-  public static RestaurantsViewModel getRestaurants() {
+  public static RestaurantsViewModel mock() {
     List<RestaurantsViewModel.RestaurantViewModel> restaurantViewModels = new ArrayList<>();
 
     RestaurantViewModel restaurantViewModel = new RestaurantViewModel(
