@@ -38,8 +38,8 @@
   <string name="total">Ukupno</string>
   <string name="security">Zaštita</string>
   <string name="security_pin_message">Podesi zaštitni pin</string>
-  <string name="enter_security_ping">Unesite zaštitni pin</string>
-  <string name="confirm_security_ping">Potvrdite zaštitni pin</string>
+  <string name="enter_security_pin">Unesite zaštitni pin</string>
+  <string name="confirm_security_pin">Potvrdite zaštitni pin</string>
   <string name="pin_mismatch">Pinovi se ne poklapaju, pokušajte ponovno</string>
   <string name="pin_saved">Pin uspješno spremljen</string>
   <string name="save">Spremi</string>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:pinview="http://schemas.android.com/apk/res-auto"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/login_background"
+  android:clickable="true"
   android:padding="@dimen/padding_default">
   <LinearLayout
     android:id="@+id/settings_ping_enter_container"
@@ -17,15 +18,15 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginBottom="@dimen/padding_default"
-      android:text="@string/enter_security_ping"/>
-    <com.dpizarro.pinview.library.PinView
+      android:text="@string/enter_security_pin"/>
+    <me.philio.pinentry.PinEntryView
       android:id="@+id/settings_pin_enter"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/padding_default"
-      pinview:keyboardMandatory="true"
-      pinview:nativePinBox="true"
-      pinview:numberPinBoxes="4"/>
+      android:layout_gravity="center_horizontal"
+      app:accentType="character"
+      app:pinAccentColor="@color/colorPrimary"
+      app:digitElevation="@dimen/padding_medium"/>
   </LinearLayout>
   <LinearLayout
     android:id="@+id/settings_ping_confirm_container"
@@ -40,15 +41,15 @@
       android:layout_height="wrap_content"
       android:layout_marginBottom="@dimen/padding_default"
       android:layout_marginTop="@dimen/padding_default"
-      android:text="@string/confirm_security_ping"/>
-    <com.dpizarro.pinview.library.PinView
+      android:text="@string/confirm_security_pin"/>
+    <me.philio.pinentry.PinEntryView
       android:id="@+id/settings_pin_confirm"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/padding_default"
-      pinview:keyboardMandatory="true"
-      pinview:nativePinBox="true"
-      pinview:numberPinBoxes="4"/>
+      android:layout_gravity="center_horizontal"
+      app:accentType="character"
+      app:pinAccentColor="@color/colorPrimary"
+      app:digitElevation="@dimen/padding_medium"/>
   </LinearLayout>
   <Button
     android:id="@+id/settings_pin_save"
