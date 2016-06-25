@@ -25,17 +25,13 @@ public class SettingsPinFragment extends BaseFragment {
 
   public static final String TAG = SettingsPinFragment.class.getSimpleName();
 
+  private static final int PIN_LENGTH = 4;
+
   public interface SettingsPinListener {
     void onPinConfirmed();
 
     void onPinRemoved();
   }
-
-  @BindView(R.id.settings_ping_enter_container)
-  View settingsPinEnterContainer;
-
-  @BindView(R.id.settings_ping_confirm_container)
-  View settingsPinConfirmContainer;
 
   @BindView(R.id.settings_pin_enter)
   PinEntryView settingsPinEnter;
@@ -72,7 +68,7 @@ public class SettingsPinFragment extends BaseFragment {
     settingsPinEnter.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
-        if (s.length() == 4) {
+        if (s.length() == PIN_LENGTH) {
           settingsPinConfirm.requestFocus();
         }
       }
@@ -81,7 +77,7 @@ public class SettingsPinFragment extends BaseFragment {
     settingsPinConfirm.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
-        if (s.length() == 4) {
+        if (s.length() == PIN_LENGTH) {
           validatePins();
         }
       }
