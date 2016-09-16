@@ -19,7 +19,8 @@ import retrofit.client.OkClient;
 @Module
 public class GrabLetsApiModule {
 
-  private static final String BASE_URL = "http://private-a7425-grablets.apiary-mock.com/";
+//  private static final String BASE_URL = "http://private-a7425-grablets.apiary-mock.com/";
+  private static final String BASE_URL = "http://46.101.111.210";
 
   @Provides
   @Singleton

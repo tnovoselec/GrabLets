@@ -45,6 +45,10 @@
   <string name="save">Spremi</string>
   <string name="remove_pin">Ukloni pin</string>
   <string name="pin_removed">Zaštita pinom uklonjena</string>
+  <string name="user_email">Email</string>
+  <string name="user_password">Lozinka</string>
+  <string name="user_home_address">Adresa kod kuće</string>
+  <string name="user_work_address">Adresa na poslu</string>
 
   <plurals name="basket_item_number">
     <item quantity="one">%d jelo u košarici</item>

@@ -1,8 +1,7 @@
 package com.grablets.di;
 
 
-import android.app.Application;
-import android.content.Context;
+import javax.inject.Singleton;
 
 import com.grablets.GrabLetsApplication;
 import com.grablets.api.GrabLetsClient;
@@ -23,6 +22,8 @@ import com.grablets.interactor.GetFavouriteRestaurantsUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsByIdUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
+import com.grablets.interactor.LoginUseCase;
+import com.grablets.interactor.RegisterUseCase;
 import com.grablets.receiver.AlarmReceiver;
 import com.grablets.receiver.BootBroadcastReceiver;
 import com.grablets.repository.BasketDbRepository;
@@ -31,8 +32,8 @@ import com.grablets.repository.RestaurantDbMenuItemsRepository;
 import com.grablets.repository.RestaurantsDbRepository;
 import com.grablets.service.DailyMenuOverlayService;
 
-import javax.inject.Singleton;
-
+import android.app.Application;
+import android.content.Context;
 import dagger.Component;
 
 @Singleton
@@ -96,6 +97,10 @@ public interface ApplicationComponent {
   ChangeRestaurantFavouriteStatusUseCase getChangeRestaurantFavouriteStatusUseCase();
 
   GetFavouriteRestaurantsUseCase getGetFavouriteRestaurantsUseCase();
+
+  LoginUseCase getLoginUseCase();
+
+  RegisterUseCase getRegisterUseCase();
 
   void inject(GrabLetsApplication commerceApplication);
 

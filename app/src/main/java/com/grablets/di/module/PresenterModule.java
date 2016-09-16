@@ -11,6 +11,8 @@ import com.grablets.interactor.GetFavouriteRestaurantsUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsByIdUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
+import com.grablets.interactor.LoginUseCase;
+import com.grablets.interactor.RegisterUseCase;
 import com.grablets.mvp.presenter.CheckoutPresenter;
 import com.grablets.mvp.presenter.DailyMenuOverlayPresenter;
 import com.grablets.mvp.presenter.DailyMenuPresenter;
@@ -61,14 +63,14 @@ public class PresenterModule {
 
   @Provides
   @ActivityScope
-  LoginPresenter loginPresenter(Router router) {
-    return new LoginPresenter(router);
+  LoginPresenter loginPresenter(Router router, LoginUseCase loginUseCase) {
+    return new LoginPresenter(router, loginUseCase);
   }
 
   @Provides
   @ActivityScope
-  RegistrationPresenter registrationPresenter(Router router) {
-    return new RegistrationPresenter(router);
+  RegistrationPresenter registrationPresenter(Router router, RegisterUseCase registerUseCase) {
+    return new RegistrationPresenter(router, registerUseCase);
   }
 
   @Provides

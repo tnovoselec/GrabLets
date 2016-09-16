@@ -10,7 +10,7 @@ public class MenuItemViewModel {
   public MenuItemViewModel(String id, String title, String description, String imageUrl, double price) {
     this.id = id;
     this.description = description;
-    this.imageUrl = imageUrl;
+    this.imageUrl = "http://46.101.111.210/" + imageUrl;
     this.title = title;
     this.price = price;
   }

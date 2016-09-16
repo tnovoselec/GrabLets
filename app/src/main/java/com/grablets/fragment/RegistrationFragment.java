@@ -1,5 +1,13 @@
 package com.grablets.fragment;
 
+import javax.inject.Inject;
+
+import com.grablets.R;
+import com.grablets.di.ActivityComponent;
+import com.grablets.di.ComponentProvider;
+import com.grablets.mvp.RegistrationMvp;
+import com.grablets.mvp.presenter.RegistrationPresenter;
+
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,15 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TimePicker;
-
-import com.grablets.R;
-import com.grablets.di.ActivityComponent;
-import com.grablets.di.ComponentProvider;
-import com.grablets.mvp.RegistrationMvp;
-import com.grablets.mvp.presenter.RegistrationPresenter;
-
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTouch;
@@ -26,18 +25,15 @@ public class RegistrationFragment extends BaseFragment implements RegistrationMv
 
   public static final String TAG = RegistrationFragment.class.getSimpleName();
 
-  @BindView(R.id.user_first_name_label)
-  EditText userFirstNameLabel;
-  @BindView(R.id.user_last_name_label)
-  EditText userLastNameLabel;
-  @BindView(R.id.user_phone_label)
-  EditText userPhoneLabel;
-  @BindView(R.id.user_address_label)
-  EditText userAddressLabel;
-  @BindView(R.id.user_additional_info_label)
-  EditText userAdditionalInfoLabel;
-  @BindView(R.id.user_delivery_time_label)
-  EditText userDeliveryTimeLabel;
+  @BindView(R.id.user_email_label) EditText userEmailLabel;
+  @BindView(R.id.user_password_label) EditText userPasswordLabel;
+  @BindView(R.id.user_first_name_label) EditText userFirstNameLabel;
+  @BindView(R.id.user_last_name_label) EditText userLastNameLabel;
+  @BindView(R.id.user_phone_label) EditText userPhoneLabel;
+  @BindView(R.id.user_address_home_label) EditText userAddressHomeLabel;
+  @BindView(R.id.user_address_work_label) EditText userAddressWorkLabel;
+  @BindView(R.id.user_additional_info_label) EditText userAdditionalInfoLabel;
+  @BindView(R.id.user_delivery_time_label) EditText userDeliveryTimeLabel;
 
   @Inject
   RegistrationPresenter registrationPresenter;
@@ -74,10 +70,13 @@ public class RegistrationFragment extends BaseFragment implements RegistrationMv
   @OnClick(R.id.user_register)
   public void onRegisterClicked() {
     registrationPresenter.register(
+        userEmailLabel.getText().toString(),
+        userPasswordLabel.getText().toString(),
         userFirstNameLabel.getText().toString(),
         userLastNameLabel.getText().toString(),
         userPhoneLabel.getText().toString(),
-        userAddressLabel.getText().toString(),
+        userAddressHomeLabel.getText().toString(),
+        userAddressWorkLabel.getText().toString(),
         userAdditionalInfoLabel.getText().toString()
     );
   }
@@ -102,6 +101,4 @@ public class RegistrationFragment extends BaseFragment implements RegistrationMv
   public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
     userDeliveryTimeLabel.setText(String.format("%02d:%02d", hourOfDay, minute));
   }
-
-
 }

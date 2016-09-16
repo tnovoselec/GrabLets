@@ -9,6 +9,8 @@ import com.grablets.interactor.GetFavouriteRestaurantsUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsByIdUseCase;
 import com.grablets.interactor.GetRestaurantMenuItemsUseCase;
 import com.grablets.interactor.GetRestaurantsUseCase;
+import com.grablets.interactor.LoginUseCase;
+import com.grablets.interactor.RegisterUseCase;
 import com.grablets.repository.BasketDbRepository;
 import com.grablets.repository.FavouriteRestaurantsRepository;
 import com.grablets.repository.RestaurantDbMenuItemsRepository;
@@ -21,7 +23,8 @@ import dagger.Provides;
 public class UseCaseModule {
 
   @Provides
-  GetRestaurantsUseCase provideGetRestaurantsUseCase(GrabLetsClient grabLetsClient, RestaurantsDbRepository restaurantsDbRepository) {
+  GetRestaurantsUseCase provideGetRestaurantsUseCase(GrabLetsClient grabLetsClient,
+      RestaurantsDbRepository restaurantsDbRepository) {
     return new GetRestaurantsUseCase(grabLetsClient, restaurantsDbRepository);
   }
 
@@ -31,32 +34,46 @@ public class UseCaseModule {
   }
 
   @Provides
-  GetRestaurantMenuItemsUseCase provideGetRestaurantMenuItemsUseCase(RestaurantDbMenuItemsRepository restaurantDbMenuItemsRepository) {
+  GetRestaurantMenuItemsUseCase provideGetRestaurantMenuItemsUseCase(
+      RestaurantDbMenuItemsRepository restaurantDbMenuItemsRepository) {
     return new GetRestaurantMenuItemsUseCase(restaurantDbMenuItemsRepository);
   }
 
   @Provides
-  ClearBasketUseCase provideClearBasketUseCase(BasketDbRepository basketDbRepository){
+  ClearBasketUseCase provideClearBasketUseCase(BasketDbRepository basketDbRepository) {
     return new ClearBasketUseCase(basketDbRepository);
   }
 
   @Provides
-  CreateOrderUseCase provideCreateOrderUseCase(){
+  CreateOrderUseCase provideCreateOrderUseCase() {
     return new CreateOrderUseCase();
   }
 
   @Provides
-  GetRestaurantMenuItemsByIdUseCase provideGetRestaurantMenuItemsByIdUseCase(RestaurantDbMenuItemsRepository restaurantDbMenuItemsRepository){
+  GetRestaurantMenuItemsByIdUseCase provideGetRestaurantMenuItemsByIdUseCase(
+      RestaurantDbMenuItemsRepository restaurantDbMenuItemsRepository) {
     return new GetRestaurantMenuItemsByIdUseCase(restaurantDbMenuItemsRepository);
   }
 
   @Provides
-  ChangeRestaurantFavouriteStatusUseCase provideChangeRestaurantFavouriteStatusUseCase(FavouriteRestaurantsRepository favouriteRestaurantsRepository){
+  ChangeRestaurantFavouriteStatusUseCase provideChangeRestaurantFavouriteStatusUseCase(
+      FavouriteRestaurantsRepository favouriteRestaurantsRepository) {
     return new ChangeRestaurantFavouriteStatusUseCase(favouriteRestaurantsRepository);
   }
 
   @Provides
-  GetFavouriteRestaurantsUseCase provideGetFavouriteRestaurantsUseCase(FavouriteRestaurantsRepository favouriteRestaurantsRepository){
+  GetFavouriteRestaurantsUseCase provideGetFavouriteRestaurantsUseCase(
+      FavouriteRestaurantsRepository favouriteRestaurantsRepository) {
     return new GetFavouriteRestaurantsUseCase(favouriteRestaurantsRepository);
+  }
+
+  @Provides
+  LoginUseCase provideLoginUseCase(GrabLetsClient grabLetsClient) {
+    return new LoginUseCase(grabLetsClient);
+  }
+
+  @Provides
+  RegisterUseCase provideRegisterUseCase(GrabLetsClient grabLetsClient) {
+    return new RegisterUseCase(grabLetsClient);
   }
 }
