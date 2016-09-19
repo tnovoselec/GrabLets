@@ -2,6 +2,7 @@ package com.grablets.mvp.presenter;
 
 import javax.inject.Inject;
 
+import com.grablets.R;
 import com.grablets.Router;
 import com.grablets.api.model.LoginRequest;
 import com.grablets.api.model.LoginResponse;
@@ -24,6 +25,11 @@ public class LoginPresenter extends SubscribingPresenter<LoginMvp.View> implemen
 
   @Override
   public void onLoginClicked(String email, String password) {
+
+    if (isViewAttached()){
+      getView().showProgress();
+    }
+
     addSubscription(loginUseCase.execute(new LoginRequest(email, password))
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -31,10 +37,17 @@ public class LoginPresenter extends SubscribingPresenter<LoginMvp.View> implemen
   }
 
   private void onLoginSuccess(LoginResponse loginResponse) {
+    if (isViewAttached()){
+      getView().hideProgress();
+    }
     router.showMainActivity();
   }
 
   private void onLoginError(Throwable throwable) {
+    if (isViewAttached()){
+      getView().hideProgress();
+      getView().showErrorMessage(R.string.server_error_message);
+    }
     throwable.printStackTrace();
   }
 

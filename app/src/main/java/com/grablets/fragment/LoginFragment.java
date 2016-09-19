@@ -1,20 +1,20 @@
 package com.grablets.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
+import javax.inject.Inject;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.grablets.R;
 import com.grablets.di.ActivityComponent;
 import com.grablets.di.ComponentProvider;
 import com.grablets.mvp.LoginMvp;
 import com.grablets.mvp.presenter.LoginPresenter;
 
-import javax.inject.Inject;
-
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -30,6 +30,8 @@ public class LoginFragment extends BaseFragment implements LoginMvp.View {
 
   @Inject
   LoginPresenter loginPresenter;
+
+  private MaterialDialog progressDialog;
 
   public static LoginFragment create() {
     return new LoginFragment();
@@ -73,5 +75,21 @@ public class LoginFragment extends BaseFragment implements LoginMvp.View {
   @Override
   public void showErrorMessage(int errorMessageId) {
 
+  }
+
+  @Override
+  public void showProgress() {
+    progressDialog= new MaterialDialog.Builder(getContext())
+        .title("Prijava u tijeku")
+        .cancelable(false)
+        .content("Molimo pričekajte")
+        .progress(true, 1)
+        .build();
+    progressDialog.show();
+  }
+
+  @Override
+  public void hideProgress() {
+    progressDialog.dismiss();
   }
 }

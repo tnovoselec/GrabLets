@@ -10,5 +10,9 @@ public class LoginMvp {
 
   public interface View extends MvpView {
 
+    void showProgress();
+
+    void hideProgress();
+
   }
 }

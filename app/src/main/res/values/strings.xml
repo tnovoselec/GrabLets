@@ -49,6 +49,7 @@
   <string name="user_password">Lozinka</string>
   <string name="user_home_address">Adresa kod kuće</string>
   <string name="user_work_address">Adresa na poslu</string>
+  <string name="server_error_message">Greška na serveru, pokušajte ponovno kasnije</string>
 
   <plurals name="basket_item_number">
     <item quantity="one">%d jelo u košarici</item>

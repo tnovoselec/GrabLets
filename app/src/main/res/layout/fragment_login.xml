@@ -24,7 +24,7 @@
 
     <com.rengwuxian.materialedittext.MaterialEditText
       android:id="@+id/email_field"
-      style="@style/TextAppearance.AppCompat.Large"
+      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/login_margin"
@@ -39,7 +39,7 @@
 
     <com.rengwuxian.materialedittext.MaterialEditText
       android:id="@+id/password_field"
-      style="@style/TextAppearance.AppCompat.Large"
+      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/login_margin"
