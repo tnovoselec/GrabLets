@@ -50,6 +50,10 @@
   <string name="user_home_address">Adresa kod kuće</string>
   <string name="user_work_address">Adresa na poslu</string>
   <string name="server_error_message">Greška na serveru, pokušajte ponovno kasnije</string>
+  <string name="login_in_progress">Prijava u tijeku</string>
+  <string name="please_wait">Molimo pričekajte</string>
+  <string name="email_helper">Npr. ime.prezime@gmail.com</string>
+  <string name="password_helper">Minimalno 4 znaka</string>
 
   <plurals name="basket_item_number">
     <item quantity="one">%d jelo u košarici</item>

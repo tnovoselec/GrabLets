@@ -1,5 +1,7 @@
 package com.grablets.mvp.presenter;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
 
 import com.grablets.R;
@@ -31,6 +33,7 @@ public class LoginPresenter extends SubscribingPresenter<LoginMvp.View> implemen
     }
 
     addSubscription(loginUseCase.execute(new LoginRequest(email, password))
+        .delay(1, TimeUnit.SECONDS)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this::onLoginSuccess, this::onLoginError));
